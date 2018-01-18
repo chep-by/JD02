@@ -48,9 +48,6 @@
               <failsOnError>true</failsOnError>
               <linkXRef>false</linkXRef>
             </configuration>
-            <goals>
-              <goal>check</goal>
-            </goals>
           </execution>
         </executions>
       </plugin>

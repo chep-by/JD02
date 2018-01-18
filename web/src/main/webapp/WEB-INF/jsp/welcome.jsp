@@ -1,4 +1,4 @@
-<%--
+<%@ page import="by.itacademy.UserService" %><%--
   Created by IntelliJ IDEA.
   User: chep
   Date: 18.01.2018
@@ -11,6 +11,7 @@
     <title>Контрольная точка №1 ку!</title>
 </head>
 <body>
-<h2>This is page for checking homework</h2>
+<h1 align="center">This is page for checking homework</h1>
+<h2 align="center"><i>userPlusOne()</i> result - <%= new UserService().userPlusOne()%></h2>
 </body>
 </html>
