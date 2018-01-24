@@ -22,7 +22,5 @@ hs_err_pid*
 
 .idea/
 *.iml
-checkstyle.xml
 **/target
-
 
