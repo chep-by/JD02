@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="dialect">org.hibernate.dialect.MySQL57Dialect</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/hero_hw</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password"/>
+        <property name="show_sql">true</property>
+        <property name="format_sql">true</property>
+
+        <mapping class="by.itacademy.entity.Role"/>
+        <mapping class="by.itacademy.entity.User"/>
+        <mapping class="by.itacademy.entity.ExtraUsersInfo"/>
+        <mapping class="by.itacademy.entity.Bill"/>
+        <mapping class="by.itacademy.entity.CarCategory"/>
+        <mapping class="by.itacademy.entity.CostStrategy"/>
+        <mapping class="by.itacademy.entity.Manufacture"/>
+        <mapping class="by.itacademy.entity.Model"/>
+        <mapping class="by.itacademy.entity.Reservation"/>
+        <mapping class="by.itacademy.entity.ReservationStatus"/>
+        <mapping class="by.itacademy.entity.Vehicle"/>
+        <mapping class="by.itacademy.entity.DamageBill"/>
+        <mapping class="by.itacademy.entity.Car"/>
+        <mapping class="by.itacademy.entity.Motorcycle"/>
+
+        <!--<mapping class="by.itacademy.entity."/>-->
+
+    </session-factory>
+</hibernate-configuration>
