@@ -6,7 +6,7 @@
     <session-factory>
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="dialect">org.hibernate.dialect.MySQL57Dialect</property>
-        <property name="connection.url">jdbc:mysql://localhost:3306/hero_hw</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/test_mapping</property>
         <property name="connection.username">root</property>
         <property name="connection.password"/>
         <property name="show_sql">true</property>
@@ -14,7 +14,7 @@
 
         <mapping class="by.itacademy.entity.Role"/>
         <mapping class="by.itacademy.entity.User"/>
-        <mapping class="by.itacademy.entity.ExtraUsersInfo"/>
+        <mapping class="by.itacademy.entity.AdditionalUsersInfo"/>
         <mapping class="by.itacademy.entity.Bill"/>
         <mapping class="by.itacademy.entity.CarCategory"/>
         <mapping class="by.itacademy.entity.CostStrategy"/>
@@ -26,7 +26,10 @@
         <mapping class="by.itacademy.entity.DamageBill"/>
         <mapping class="by.itacademy.entity.Car"/>
         <mapping class="by.itacademy.entity.Motorcycle"/>
-
+        <mapping class="by.itacademy.entity.Review"/>
+        <mapping class="by.itacademy.entity.AdditionalReview"/>
+        <mapping class="by.itacademy.entity.Chat"/>
+        <mapping class="by.itacademy.entity.ChatLine"/>
         <!--<mapping class="by.itacademy.entity."/>-->
 
     </session-factory>

@@ -21,16 +21,15 @@ public class User extends BaseEntity {
     @Column(name = "password")
     private String password;
 
-    @ManyToMany()
+    @ManyToMany
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Set<Role> role_id;
 
-    @OneToOne
-    @JoinColumn(name = "user_extra_info_id")
-    private ExtraUsersInfo ExtraUsersInfo;
+    @OneToOne(mappedBy = "user")
+    private AdditionalUsersInfo AdditionalUsersInfo;
 
     @OneToMany(mappedBy = "user")
     private Set<Reservation> reservations;

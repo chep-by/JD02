@@ -1,6 +1,5 @@
 package by.itacademy.entity;
 
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,12 +11,9 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table (name = "roles")
-public class Role extends BaseEntity {
+@Table (name = "chats")
+public class Chat extends BaseEntity {
 
-    @Column(name = "role_name")
-    private String role;
-
-    @ManyToMany(mappedBy = "role_id")
-      private Set<User> user_id;
+    @OneToMany(mappedBy = "chat")
+    private Set<ChatLine> chatLine;
 }
