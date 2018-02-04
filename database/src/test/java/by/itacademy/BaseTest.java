@@ -16,5 +16,6 @@ public class BaseTest {
     @AfterClass
     public static void finish() {
         SESSION_FACTORY.close();
+
     }
 }
