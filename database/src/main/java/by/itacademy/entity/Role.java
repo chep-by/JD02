@@ -18,6 +18,6 @@ public class Role extends BaseEntity {
     @Column(name = "role_name", nullable = false, unique = true)
     private String role;
 
-    @ManyToMany(mappedBy = "role_id")
-    private Set<User> user_id;
+    @ManyToMany(mappedBy = "roles")
+    private Set<User> users;
 }
