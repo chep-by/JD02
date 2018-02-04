@@ -1,6 +1,5 @@
 package by.itacademy;
 
-
 import by.itacademy.entity.Car;
 import by.itacademy.entity.CostStrategy;
 import by.itacademy.entity.VehicleCategory;
@@ -8,14 +7,16 @@ import by.itacademy.enums.FuelType;
 import by.itacademy.enums.Gearbox;
 import by.itacademy.enums.Transmission;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
+import org.junit.Assert;
+import org.junit.Test;
 
-class UserDao {
-    public static void main(String[] args) {
-        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
-        Session session = sessionFactory.openSession();
+public class CarTest extends BaseTest {
+
+    @Test
+    public void saveTest() {
+
+        Session session = SESSION_FACTORY.openSession();
         Transaction transaction = session.beginTransaction();
 
         CostStrategy costStrategy = new CostStrategy();
@@ -39,27 +40,14 @@ class UserDao {
         car.setGearbox(Gearbox.SEMI_AUTOMATIC);
         car.setTransmission(Transmission.REAR_WHEEL);
         session.save(car);
-    }
 
-    public Car getCar() {
-        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
-        Session session = sessionFactory.openSession();
+        Car carFind = session.get(Car.class, 1L);
 
-        Car car = session.get(Car.class, 1L);
+        Assert.assertEquals(carFind.getVehicleCategory().getCategoryName(), "Premium");
+        Assert.assertEquals(carFind.getManufacture(), "BMW");
 
+        transaction.commit();
         session.close();
-        sessionFactory.close();
-        return car;
     }
 
-
-    private int num = 3;
-
-    int getNum() {
-        return num;
-    }
-
-    void setNum(int num) {
-        this.num = num;
-    }
 }
