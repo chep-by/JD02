@@ -21,27 +21,27 @@ public class Reservation extends BaseEntity {
     private LocalDateTime dateTimeReturn;
 
     @ManyToOne
-    @JoinColumn(name = "vehicle_id")
+    @JoinColumn(name = "vehicle_id", nullable = false)
     private Vehicle vehicle;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "status_id")
+    @JoinColumn(name = "status_id", nullable = false)
     private ReservationStatus reservationStatus;
 
     @Column(name = "commend")
-    private String comment;
+    private String commend;
 
-    @Column(name = "is_payed")
+    @Column(name = "is_payed", nullable = false)
     private boolean isPayed;
 
     @OneToOne
-    @JoinColumn(name = "bill_id")
+    @JoinColumn(name = "bill_id", nullable = false, unique = true)
     private Bill bill;
-    
+
     @OneToOne(mappedBy = "reservation")
     private DamageBill damageBill;
 

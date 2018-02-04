@@ -15,15 +15,15 @@ import java.time.LocalDateTime;
 public class ChatLine extends BaseEntity {
 
     @ManyToOne
-    @JoinColumn(name = "chat_id")
+    @JoinColumn(name = "chat_id", nullable = false)
     private Chat chat;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @AttributeOverrides(value = {
-            @AttributeOverride(name = "dateTime", column = @Column(name = "datetime")),
+            @AttributeOverride(name = "dateTime", column = @Column(name = "date_time")),
             @AttributeOverride(name = "commend", column = @Column(name = "line_text"))
     })
     private Commend commend;

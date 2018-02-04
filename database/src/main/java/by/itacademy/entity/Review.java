@@ -16,7 +16,7 @@ public class Review extends BaseEntity {
     private Commend commend;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @OneToOne(mappedBy = "review")

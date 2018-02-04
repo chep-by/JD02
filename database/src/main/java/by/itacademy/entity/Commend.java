@@ -17,6 +17,6 @@ public class Commend {
     @Column(name = "datetime_commend")
     private LocalDateTime dateTime;
 
-    @Column(name = "commend_text")
+    @Column(name = "commend_text", nullable = false)
     private String commend;
 }

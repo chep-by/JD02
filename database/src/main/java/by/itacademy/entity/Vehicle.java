@@ -13,28 +13,26 @@ import javax.persistence.*;
 @Entity
 @Table(name = "vehicles")
 public class Vehicle extends BaseEntity {
-    
+
     @ManyToOne
-    @JoinColumn(name = "category_id")
-    private CarCategory carCategory;
-    
-    @ManyToOne
-    @JoinColumn(name = "manufacture")
-    private Manufacture manufacture;
-    
-    @ManyToOne
-    @JoinColumn(name = "model")
-    private Model model;
-    
-    @Column(name = "cubic_capacity")
+    @JoinColumn(name = "category_id", nullable = false)
+    private VehicleCategory vehicleCategory;
+
+    @Column(name = "manufacture", nullable = false)
+    private String manufacture;
+
+    @Column(name = "model", nullable = false)
+    private String model;
+
+    @Column(name = "cubic_capacity", nullable = false)
     private int cubicCapacity;
-    
-    @Column(name = "year")
+
+    @Column(name = "year", nullable = false)
     private int year;
-    
-    @Column(name = "power")
+
+    @Column(name = "power_", nullable = false)
     private int power;
-    
-    @Column(name = "stanadart_price")
+
+    @Column(name = "stanadart_price", nullable = false)
     private int standardPrice;
 }

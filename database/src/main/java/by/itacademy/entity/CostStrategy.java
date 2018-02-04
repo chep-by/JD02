@@ -15,6 +15,6 @@ import javax.persistence.Table;
 @Table(name = "cost_strategies")
 public class CostStrategy extends BaseEntity {
 
-    @Column(name = "strategy")
+    @Column(name = "strategy", nullable = false)
     private String strategy;
 }

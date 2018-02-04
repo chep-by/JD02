@@ -12,12 +12,12 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table (name = "roles")
+@Table(name = "roles")
 public class Role extends BaseEntity {
 
-    @Column(name = "role_name")
+    @Column(name = "role_name", nullable = false, unique = true)
     private String role;
 
     @ManyToMany(mappedBy = "role_id")
-      private Set<User> user_id;
+    private Set<User> user_id;
 }

@@ -11,7 +11,7 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table (name = "chats")
+@Table(name = "chats")
 public class Chat extends BaseEntity {
 
     @OneToMany(mappedBy = "chat")

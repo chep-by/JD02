@@ -11,13 +11,13 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Table(name = "vehicle_categories")
-public class CarCategory extends BaseEntity {
+public class VehicleCategory extends BaseEntity {
 
-    @Column(name = "category_name")
+    @Column(name = "category_name", nullable = false, unique = true)
     private String categoryName;
 
     @OneToOne
-    @JoinColumn(name = "category_cost_strategy_id")
+    @JoinColumn(name = "category_cost_strategy_id", nullable = false, unique = true)
     private CostStrategy costStrategy;
 
 }

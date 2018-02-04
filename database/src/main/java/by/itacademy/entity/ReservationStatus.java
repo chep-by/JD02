@@ -17,7 +17,7 @@ import java.util.Set;
 @Table(name = "reservation_statuses")
 public class ReservationStatus extends BaseEntity {
 
-    @Column(name = "status_name")
+    @Column(name = "status_name", nullable = false, unique = true)
     private String statusName;
 
     @OneToMany(mappedBy = "reservationStatus")

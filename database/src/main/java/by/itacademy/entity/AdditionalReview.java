@@ -16,6 +16,6 @@ public class AdditionalReview extends BaseEntity {
     private Commend commend;
 
     @OneToOne
-    @JoinColumn(name = "review_id")
+    @JoinColumn(name = "review_id", nullable = false, unique = true)
     private Review review;
 }

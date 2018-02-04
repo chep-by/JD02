@@ -20,7 +20,7 @@ public class Bill extends BaseEntity {
     @Column(name = "pay_datetime")
     private LocalDateTime payDateTime;
 
-    @Column(name = "final_cost")
+    @Column(name = "final_cost", nullable = false)
     private int finalCost;
 
     @OneToOne(mappedBy = "bill")
