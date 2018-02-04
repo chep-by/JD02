@@ -1,6 +1,7 @@
 package by.itacademy;
 
 import by.itacademy.entity.AdditionalUsersInfo;
+import by.itacademy.entity.Reservation;
 import by.itacademy.entity.Role;
 import by.itacademy.entity.User;
 import org.hibernate.Session;
@@ -42,7 +43,6 @@ public class UserTest extends BaseTest {
         Assert.assertEquals(user1.getPassword(), "1");
         Assert.assertTrue(user1.getRoles().contains(role));
         Assert.assertEquals(user1.getAdditionalUsersInfo(), additionalUsersInfo);
-
         transaction.commit();
         session.close();
     }

@@ -1,5 +1,7 @@
 package by.itacademy.entity;
 
+import by.itacademy.entity.BaseEntity;
+import by.itacademy.entity.VehicleCategory;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

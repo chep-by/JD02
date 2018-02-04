@@ -17,18 +17,16 @@ public class BillTest extends BaseTest {
         Session session = SESSION_FACTORY.openSession();
         Transaction transaction = session.beginTransaction();
 
-        Reservation reservation = new Reservation();
 
         Bill bill = new Bill();
         bill.setFinalCost(15);
         bill.setPayDateTime(LocalDateTime.now());
-        bill.setReservation(reservation);
 
         session.save(bill);
 
         Bill findBill = session.get(Bill.class, 1L);
+
         Assert.assertEquals(findBill.getFinalCost(), 15);
-        Assert.assertEquals(findBill.getReservation(), reservation);
 
         transaction.commit();
         session.close();
