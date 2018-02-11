@@ -2,15 +2,18 @@ package by.itacademy;
 
 import by.itacademy.entity.Car;
 
+import java.util.List;
+
 public class UserService {
     public int userPlusOne() {
         return new UserDao().getNum() + 1;
     }
 
     public String getCarInfo() {
-        Car car = new UserDao().getCar();
-        return car.getManufacture() + " " + car.getModel() + " год выпуска:" + car.getYear() + " объем:"
-                + car.getCubicCapacity() + "см^3,  мощность:" + car.getPower() + " стоимость за день аренды:" + car.getStandardPrice();
+        List <Car> car = new CarDao().findAll();
+        return car.get(0).getManufacture() + " " + car.get(0).getModel() + " год выпуска:" + car.get(0).getYear() + " объем:"
+                + car.get(0).getCubicCapacity() + "см^3,  мощность:" + car.get(0).getPower() + " стоимость за день аренды:" + car.get(0).getStandardPrice();
+
 
     }
 

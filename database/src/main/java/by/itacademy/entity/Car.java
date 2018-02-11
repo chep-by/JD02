@@ -6,12 +6,14 @@ import by.itacademy.enums.Transmission;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
+@ToString
 @Entity
 @Table(name = "cars")
 @PrimaryKeyJoinColumn(name = "vehicle_id")
