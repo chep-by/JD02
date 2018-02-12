@@ -1,7 +1,7 @@
-package by.itacademy;
+package by.itacademy.entitytests;
 
+import by.itacademy.BaseTest;
 import by.itacademy.entity.AdditionalUsersInfo;
-import by.itacademy.entity.Reservation;
 import by.itacademy.entity.Role;
 import by.itacademy.entity.User;
 import org.hibernate.Session;

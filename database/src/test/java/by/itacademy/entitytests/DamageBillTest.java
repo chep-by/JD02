@@ -1,5 +1,6 @@
-package by.itacademy;
+package by.itacademy.entitytests;
 
+import by.itacademy.BaseTest;
 import by.itacademy.entity.*;
 import by.itacademy.enums.FuelType;
 import by.itacademy.enums.Gearbox;

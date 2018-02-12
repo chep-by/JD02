@@ -1,5 +1,6 @@
-package by.itacademy;
+package by.itacademy.entitytests;
 
+import by.itacademy.BaseTest;
 import by.itacademy.entity.Chat;
 import by.itacademy.entity.ChatLine;
 import by.itacademy.entity.Commend;
@@ -8,8 +9,6 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.junit.Assert;
 import org.junit.Test;
-
-import java.util.Set;
 
 public class ChatTest extends BaseTest {
 

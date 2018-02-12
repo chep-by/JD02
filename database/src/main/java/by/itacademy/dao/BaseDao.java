@@ -1,4 +1,4 @@
-package by.itacademy;
+package by.itacademy.dao;
 
 import by.itacademy.entity.BaseEntity;
 import org.hibernate.Session;
@@ -9,7 +9,7 @@ import java.util.List;
 
 public abstract class BaseDao<T extends BaseEntity> {
 
-    private static final SessionFactory SESSION_FACTORY
+    static final SessionFactory SESSION_FACTORY
             = new Configuration().configure().buildSessionFactory();
 
     private Class<T> entityClass;

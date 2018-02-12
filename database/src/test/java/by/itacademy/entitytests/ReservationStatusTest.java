@@ -1,5 +1,6 @@
-package by.itacademy;
+package by.itacademy.entitytests;
 
+import by.itacademy.BaseTest;
 import by.itacademy.entity.ReservationStatus;
 import org.hibernate.Session;
 import org.hibernate.Transaction;

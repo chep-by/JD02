@@ -1,5 +1,6 @@
-package by.itacademy;
+package by.itacademy.entitytests;
 
+import by.itacademy.BaseTest;
 import by.itacademy.entity.Car;
 import by.itacademy.entity.CostStrategy;
 import by.itacademy.entity.VehicleCategory;

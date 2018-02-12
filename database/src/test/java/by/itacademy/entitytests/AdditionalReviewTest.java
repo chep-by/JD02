@@ -1,9 +1,7 @@
-package by.itacademy;
+package by.itacademy.entitytests;
 
-import by.itacademy.entity.Commend;
-import by.itacademy.entity.Review;
-import by.itacademy.entity.Role;
-import by.itacademy.entity.User;
+import by.itacademy.BaseTest;
+import by.itacademy.entity.*;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.junit.Assert;
@@ -12,11 +10,10 @@ import org.junit.Test;
 import java.util.HashSet;
 import java.util.Set;
 
-public class ReviewTest extends BaseTest {
+public class AdditionalReviewTest extends BaseTest {
 
     @Test
-    public void saveTest() {
-
+    public void saveAdditionalReviewTest() {
         Session session = SESSION_FACTORY.openSession();
         Transaction transaction = session.beginTransaction();
 
@@ -34,20 +31,27 @@ public class ReviewTest extends BaseTest {
 
         Commend commend = new Commend();
         commend.setCommend("blah-blah");
+        Commend commendAdd = new Commend();
+        commendAdd.setCommend("blah-blah again");
 
         Review review = new Review();
         review.setUser(user);
         review.setCommend(commend);
-
         session.save(review);
 
-        Review reviewFind = session.get(Review.class, 1L);
+        AdditionalReview additionalReview = new AdditionalReview();
+        additionalReview.setCommend(commendAdd);
+        additionalReview.setReview(review);
 
-        Assert.assertEquals(reviewFind.getUser(), user);
-        Assert.assertEquals(reviewFind.getCommend().getCommend(), "blah-blah");
+        session.save(additionalReview);
+
+        AdditionalReview additionalReviewFind = session.get(AdditionalReview.class, 1L);
+
+        Assert.assertEquals(additionalReviewFind.getCommend().getCommend(), "blah-blah again");
+        Assert.assertEquals(additionalReviewFind.getReview().getUser().getLogin(), "1");
+
 
         transaction.commit();
         session.close();
     }
-
 }

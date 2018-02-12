@@ -1,7 +1,7 @@
-package by.itacademy;
+package by.itacademy.entitytests;
 
+import by.itacademy.BaseTest;
 import by.itacademy.entity.Bill;
-import by.itacademy.entity.Reservation;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.junit.Assert;

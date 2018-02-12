@@ -1,13 +1,11 @@
 package by.itacademy;
 
+import by.itacademy.dao.CarDao;
 import by.itacademy.entity.Car;
 
 import java.util.List;
 
 public class UserService {
-    public int userPlusOne() {
-        return new UserDao().getNum() + 1;
-    }
 
     public String getCarInfo() {
         List <Car> car = new CarDao().findAll();

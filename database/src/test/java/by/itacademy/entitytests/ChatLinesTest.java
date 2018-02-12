@@ -1,5 +1,6 @@
-package by.itacademy;
+package by.itacademy.entitytests;
 
+import by.itacademy.BaseTest;
 import by.itacademy.entity.Chat;
 import by.itacademy.entity.ChatLine;
 import by.itacademy.entity.Commend;
