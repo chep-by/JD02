@@ -16,4 +16,31 @@ create table cars (fuel_type varchar(12) not null, gearbox varchar(15) not null,
 create table reservations (id bigint not null auto_increment, commend varchar(255), datetime_return datetime, datetime_take datetime, is_payed bit not null, bill_id bigint not null unique, status_id bigint not null, user_id bigint not null, vehicle_id bigint not null, primary key (id), foreign key (bill_id) references bills (id), foreign key (status_id) references reservation_statuses (id), foreign key (user_id) references users (id), foreign key (vehicle_id) references vehicles (id));
 create table damage_bills (id bigint not null auto_increment, commend varchar(255) not null, cost int not null, reservation_id bigint not null unique, primary key (id), foreign key (reservation_id) references reservations (id));
 
+/* add cars to table*/
+INSERT INTO cost_strategies VALUES (1, 'our stategy');
+INSERT INTO vehicle_categories (id, category_name, category_cost_strategy_id) VALUES (1, 'premium', 1);
+INSERT INTO vehicles (id, manufacture, model, stanadart_price, year, cubic_capacity, power_, category_id) VALUES (1, 'BMW', '645', 120, 2005, 4500, 331, 1);
+INSERT INTO vehicles (id, manufacture, model, stanadart_price, year, cubic_capacity, power_, category_id) VALUES (2, 'BMW', '645', 120, 2006, 4500, 332, 1);
+INSERT INTO vehicles (id, manufacture, model, stanadart_price, year, cubic_capacity, power_, category_id) VALUES (3, 'BMW', '645', 120, 2007, 4500, 333, 1);
+INSERT INTO vehicles (id, manufacture, model, stanadart_price, year, cubic_capacity, power_, category_id) VALUES (4, 'AUDI', 'A4', 120, 2005, 2500, 170, 1);
+INSERT INTO vehicles (id, manufacture, model, stanadart_price, year, cubic_capacity, power_, category_id) VALUES (5, 'AUDI', 'A5', 120, 2010, 4500, 330, 1);
+INSERT INTO vehicles (id, manufacture, model, stanadart_price, year, cubic_capacity, power_, category_id) VALUES (6, 'AUDI', 'A6', 120, 2007, 4500, 330, 1);
+INSERT INTO vehicles (id, manufacture, model, stanadart_price, year, cubic_capacity, power_, category_id) VALUES (7, 'BMW', '740', 100, 2003, 4000, 330, 1);
+INSERT INTO vehicles (id, manufacture, model, stanadart_price, year, cubic_capacity, power_, category_id) VALUES (8, 'BMW', '320i', 80, 2005, 2000, 330, 1);
+INSERT INTO vehicles (id, manufacture, model, stanadart_price, year, cubic_capacity, power_, category_id) VALUES (9, 'BMW', '645', 120, 2005, 4500, 330, 1);
+INSERT INTO vehicles (id, manufacture, model, stanadart_price, year, cubic_capacity, power_, category_id) VALUES (10, 'BMW', '645', 120, 2007, 4500, 334, 1);
+INSERT INTO vehicles (id, manufacture, model, stanadart_price, year, cubic_capacity, power_, category_id) VALUES (11, 'BMW', '645', 120, 2007, 4500, 335, 1);
+INSERT INTO vehicles (id, manufacture, model, stanadart_price, year, cubic_capacity, power_, category_id) VALUES (12, 'BMW', '645', 120, 2007, 4500, 336, 1);
 
+INSERT INTO cars (fuel_type, gearbox, transmission, vehicle_id) VALUES ('PETROL', 'SEMI_AUTOMATIC', 'REAR_WHEEL', 1);
+INSERT INTO cars (fuel_type, gearbox, transmission, vehicle_id) VALUES ('PETROL', 'SEMI_AUTOMATIC', 'REAR_WHEEL', 2);
+INSERT INTO cars (fuel_type, gearbox, transmission, vehicle_id) VALUES ('PETROL', 'SEMI_AUTOMATIC', 'REAR_WHEEL', 3);
+INSERT INTO cars (fuel_type, gearbox, transmission, vehicle_id) VALUES ('PETROL', 'SEMI_AUTOMATIC', 'REAR_WHEEL', 4);
+INSERT INTO cars (fuel_type, gearbox, transmission, vehicle_id) VALUES ('PETROL', 'SEMI_AUTOMATIC', 'REAR_WHEEL', 5);
+INSERT INTO cars (fuel_type, gearbox, transmission, vehicle_id) VALUES ('PETROL', 'SEMI_AUTOMATIC', 'REAR_WHEEL', 6);
+INSERT INTO cars (fuel_type, gearbox, transmission, vehicle_id) VALUES ('PETROL', 'SEMI_AUTOMATIC', 'REAR_WHEEL', 7);
+INSERT INTO cars (fuel_type, gearbox, transmission, vehicle_id) VALUES ('PETROL', 'SEMI_AUTOMATIC', 'REAR_WHEEL', 8);
+INSERT INTO cars (fuel_type, gearbox, transmission, vehicle_id) VALUES ('PETROL', 'SEMI_AUTOMATIC', 'REAR_WHEEL', 9);
+INSERT INTO cars (fuel_type, gearbox, transmission, vehicle_id) VALUES ('PETROL', 'SEMI_AUTOMATIC', 'REAR_WHEEL', 10);
+INSERT INTO cars (fuel_type, gearbox, transmission, vehicle_id) VALUES ('PETROL', 'SEMI_AUTOMATIC', 'REAR_WHEEL', 11);
+INSERT INTO cars (fuel_type, gearbox, transmission, vehicle_id) VALUES ('PETROL', 'SEMI_AUTOMATIC', 'REAR_WHEEL', 12);
