@@ -1,18 +1,13 @@
 package by.itacademy;
 
-import by.itacademy.dao.CarDao;
 import by.itacademy.dto.CarDto;
 import by.itacademy.entity.Car;
 
 import java.util.List;
 
-public class CarService {
+public interface CarService {
 
-    public List<Car> getCarsByParams(CarDto carDto) {
-        return new CarDao().findByParams(carDto);
-    }
+    List<Car> getCarsByParams(CarDto carDto);
 
-    public Long getCount(CarDto carDto) {
-        return new CarDao().checkCount(carDto);
-    }
+    Long getCount(CarDto carDto);
 }

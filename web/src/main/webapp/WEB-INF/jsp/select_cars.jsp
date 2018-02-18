@@ -22,12 +22,14 @@
 <form  name="test" method="post" action="${pageContext.request.contextPath}/selectcars" >
     <p><b>Марка</b><br>
         <select id="manufacture" name="manufacture" required>
+            <%--<option value="">--</option>--%>
             <option value="bmw">BMW</option>
             <option value="audi">Audi</option>
         </select>
     </p>
     <p><b>Модель</b><br>
         <select id="model" name="model" required>
+            <%--<option value="" class="">--</option>--%>
             <option value="645" class="bmw">645</option>
             <option value="320i" class="bmw">320i</option>
             <option value="740" class="bmw">740</option>
@@ -36,8 +38,10 @@
             <option value="a5" class="audi">A5</option>
         </select>
     </p>
+    <%--required--%>
     <p style="text-align: center">Год:</p> <p style="text-align: center">
     <select name="minYear" required>
+        <%--<option value="">--</option>--%>
         <option value="1980">1980</option>
         <option value="1981">1981</option>
         <option value="1982">1982</option>
@@ -79,6 +83,7 @@
         <option value="2018">2018</option>
     </select>-
     <select name="maxYear" required>
+        <%--<option value="">--</option>--%>
         <option value="1980">1980</option>
         <option value="1981">1981</option>
         <option value="1982">1982</option>

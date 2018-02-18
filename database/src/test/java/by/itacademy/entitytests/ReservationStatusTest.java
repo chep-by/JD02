@@ -1,30 +1,22 @@
 package by.itacademy.entitytests;
 
-import by.itacademy.BaseTest;
 import by.itacademy.entity.ReservationStatus;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+import by.itacademy.repository.ReservationStatusRepository;
 import org.junit.Assert;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
-public class ReservationStatusTest extends BaseTest {
+public class ReservationStatusTest extends BaseEntityTest {
+
+    @Autowired
+    private ReservationStatusRepository reservationStatusRepository;
 
     @Test
     public void saveReservationStatusTest() {
 
-        Session session = SESSION_FACTORY.openSession();
-        Transaction transaction = session.beginTransaction();
-
-        ReservationStatus reservationStatus = new ReservationStatus();
-        reservationStatus.setStatusName("in rent");
-
-        session.save(reservationStatus);
-
-        ReservationStatus reservationStatus1 = session.get(ReservationStatus.class, 1L);
+        ReservationStatus reservationStatus1 = reservationStatusRepository.findOne(1L);
         Assert.assertEquals(reservationStatus1.getStatusName(), "in rent");
 
-        transaction.commit();
-        session.close();
     }
 
 }

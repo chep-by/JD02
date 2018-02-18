@@ -23,6 +23,12 @@ public class SelectCars extends HttpServlet {
         session.setAttribute("model", req.getParameter("model"));
         session.setAttribute("minYear", req.getParameter("minYear"));
         session.setAttribute("maxYear", req.getParameter("maxYear"));
+
+        session.setAttribute("vehicleCategoryName", req.getParameter("vehicleCategoryName"));
+        session.setAttribute("standardPriceMin", req.getParameter("standardPriceMin"));
+        session.setAttribute("standardPriceMax", req.getParameter("standardPriceMax"));
+        session.setAttribute("transmission", req.getParameter("transmission"));
+        session.setAttribute("gearbox", req.getParameter("gearbox"));
         resp.sendRedirect("/viewcars");
     }
 }

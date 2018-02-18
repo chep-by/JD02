@@ -16,21 +16,80 @@ create table cars (fuel_type varchar(12) not null, gearbox varchar(15) not null,
 create table reservations (id bigint not null auto_increment, commend varchar(255), datetime_return datetime, datetime_take datetime, is_payed bit not null, bill_id bigint not null unique, status_id bigint not null, user_id bigint not null, vehicle_id bigint not null, primary key (id), foreign key (bill_id) references bills (id), foreign key (status_id) references reservation_statuses (id), foreign key (user_id) references users (id), foreign key (vehicle_id) references vehicles (id));
 create table damage_bills (id bigint not null auto_increment, commend varchar(255) not null, cost int not null, reservation_id bigint not null unique, primary key (id), foreign key (reservation_id) references reservations (id));
 
-/* add cars to table*/
-INSERT INTO cost_strategies VALUES (1, 'our stategy');
-INSERT INTO vehicle_categories (id, category_name, category_cost_strategy_id) VALUES (1, 'premium', 1);
+/* test table*/
+INSERT INTO bills (final_cost, pay_datetime) VALUES (100, '2017-04-12 13:00:00');
+INSERT INTO bills (final_cost, pay_datetime) VALUES (120, '2018-02-12 13:22:00');
+
+INSERT INTO chats VALUES (1);
+INSERT INTO chats VALUES (2);
+
+INSERT INTO cost_strategies (strategy) VALUES ('1-100__3-95__5_90');
+INSERT INTO cost_strategies (strategy) VALUES ('1-100__3-97__5_95');
+INSERT INTO cost_strategies (strategy) VALUES ('1-100__3-90__5_85');
+INSERT INTO cost_strategies (strategy) VALUES ('1-100__3-90__5_85');
+
+INSERT INTO reservation_statuses (status_name) VALUES ('in rent');
+INSERT INTO reservation_statuses (status_name) VALUES ('wait for rent');
+INSERT INTO reservation_statuses (status_name) VALUES ('returned');
+
+INSERT INTO roles (role_name) VALUES ('admin');
+INSERT INTO roles (role_name) VALUES ('user');
+
+INSERT INTO users (login, password) VALUES ('admin','admin');
+INSERT INTO users (login, password) VALUES ('alex','1234124');
+INSERT INTO users (login, password) VALUES ('max','adr3232');
+INSERT INTO users (login, password) VALUES ('crip','12ada');
+INSERT INTO users (login, password) VALUES ('lex','asdasf');
+INSERT INTO users (login, password) VALUES ('mir','1234asd124');
+
+INSERT INTO chat_lines (line_text, date_time, chat_id, user_id) VALUES ('Hi! What about BMW?', '2018-02-13 13:22:00', 1, 2);
+INSERT INTO chat_lines (line_text, date_time, chat_id, user_id) VALUES ('Ye, it here', '2018-02-13 13:25:00', 1, 1);
+INSERT INTO chat_lines (line_text, date_time, chat_id, user_id) VALUES ('Nice!', '2018-02-13 13:29:00', 1, 2);
+INSERT INTO chat_lines (line_text, date_time, chat_id, user_id) VALUES ('Where i can rent car?', '2018-02-18 13:22:00', 2, 3);
+INSERT INTO chat_lines (line_text, date_time, chat_id, user_id) VALUES ('Here - link', '2018-02-18 13:28:00', 2, 1);
+
+INSERT INTO vehicle_categories (category_name, category_cost_strategy_id) VALUES ('business', 1);
+INSERT INTO vehicle_categories (category_name, category_cost_strategy_id) VALUES ('luxury', 2);
+INSERT INTO vehicle_categories (category_name, category_cost_strategy_id) VALUES ('budgetary', 3);
+INSERT INTO vehicle_categories (category_name, category_cost_strategy_id) VALUES ('motorcycle', 4);
+
+INSERT INTO users_roles (user_id, role_id) VALUES (1, 1);
+INSERT INTO users_roles (user_id, role_id) VALUES (2, 2);
+INSERT INTO users_roles (user_id, role_id) VALUES (3, 2);
+INSERT INTO users_roles (user_id, role_id) VALUES (4, 2);
+INSERT INTO users_roles (user_id, role_id) VALUES (5, 2);
+INSERT INTO users_roles (user_id, role_id) VALUES (6, 2);
+
+INSERT INTO additional_users_info (driving_licence_info, passport_info, user_id) VALUES ('asdasdasdasas', '45654646', 2);
+INSERT INTO additional_users_info (driving_licence_info, passport_info, user_id) VALUES ('werwer', '6498964', 3);
+INSERT INTO additional_users_info (driving_licence_info, passport_info, user_id) VALUES ('sdfsdf', '9871', 4);
+INSERT INTO additional_users_info (driving_licence_info, passport_info, user_id) VALUES ('sdf', '6489456321', 6);
+
+INSERT INTO reviews (commend_text, datetime_commend, user_id) VALUES ('Nice!', '2018-02-15 12:50:00', 3);
+INSERT INTO reviews (commend_text, datetime_commend, user_id) VALUES ('Nice!', '2018-02-15 12:40:00', 6);
+INSERT INTO reviews (commend_text, datetime_commend, user_id) VALUES ('Nice!', '2018-02-15 13:50:00', 4);
+
+
+INSERT INTO additional_reviews (commend_text, datetime_commend, review_id) VALUES ('Very Nice!', '2018-02-15 12:50:00', 1);
+INSERT INTO additional_reviews (commend_text, datetime_commend, review_id) VALUES ('Very Nice!', '2018-02-15 12:00:00', 2);
+INSERT INTO additional_reviews (commend_text, datetime_commend, review_id) VALUES ('Very Nice!', '2018-02-15 13:50:00', 3);
+
+
 INSERT INTO vehicles (id, manufacture, model, stanadart_price, year, cubic_capacity, power_, category_id) VALUES (1, 'BMW', '645', 120, 2005, 4500, 331, 1);
-INSERT INTO vehicles (id, manufacture, model, stanadart_price, year, cubic_capacity, power_, category_id) VALUES (2, 'BMW', '645', 120, 2006, 4500, 332, 1);
-INSERT INTO vehicles (id, manufacture, model, stanadart_price, year, cubic_capacity, power_, category_id) VALUES (3, 'BMW', '645', 120, 2007, 4500, 333, 1);
+INSERT INTO vehicles (id, manufacture, model, stanadart_price, year, cubic_capacity, power_, category_id) VALUES (2, 'BMW', '645', 60, 2006, 4500, 332, 1);
+INSERT INTO vehicles (id, manufacture, model, stanadart_price, year, cubic_capacity, power_, category_id) VALUES (3, 'BMW', '645', 70, 2007, 4500, 333, 2);
 INSERT INTO vehicles (id, manufacture, model, stanadart_price, year, cubic_capacity, power_, category_id) VALUES (4, 'AUDI', 'A4', 120, 2005, 2500, 170, 1);
-INSERT INTO vehicles (id, manufacture, model, stanadart_price, year, cubic_capacity, power_, category_id) VALUES (5, 'AUDI', 'A5', 120, 2010, 4500, 330, 1);
+INSERT INTO vehicles (id, manufacture, model, stanadart_price, year, cubic_capacity, power_, category_id) VALUES (5, 'AUDI', 'A5', 110, 2010, 4500, 330, 3);
 INSERT INTO vehicles (id, manufacture, model, stanadart_price, year, cubic_capacity, power_, category_id) VALUES (6, 'AUDI', 'A6', 120, 2007, 4500, 330, 1);
-INSERT INTO vehicles (id, manufacture, model, stanadart_price, year, cubic_capacity, power_, category_id) VALUES (7, 'BMW', '740', 100, 2003, 4000, 330, 1);
-INSERT INTO vehicles (id, manufacture, model, stanadart_price, year, cubic_capacity, power_, category_id) VALUES (8, 'BMW', '320i', 80, 2005, 2000, 330, 1);
+INSERT INTO vehicles (id, manufacture, model, stanadart_price, year, cubic_capacity, power_, category_id) VALUES (7, 'BMW', '740', 100, 2003, 4000, 330, 2);
+INSERT INTO vehicles (id, manufacture, model, stanadart_price, year, cubic_capacity, power_, category_id) VALUES (8, 'BMW', '320i', 80, 2005, 2000, 330, 3);
 INSERT INTO vehicles (id, manufacture, model, stanadart_price, year, cubic_capacity, power_, category_id) VALUES (9, 'BMW', '645', 120, 2005, 4500, 330, 1);
-INSERT INTO vehicles (id, manufacture, model, stanadart_price, year, cubic_capacity, power_, category_id) VALUES (10, 'BMW', '645', 120, 2007, 4500, 334, 1);
-INSERT INTO vehicles (id, manufacture, model, stanadart_price, year, cubic_capacity, power_, category_id) VALUES (11, 'BMW', '645', 120, 2007, 4500, 335, 1);
+INSERT INTO vehicles (id, manufacture, model, stanadart_price, year, cubic_capacity, power_, category_id) VALUES (10, 'BMW', '645', 70, 2007, 4500, 334, 1);
+INSERT INTO vehicles (id, manufacture, model, stanadart_price, year, cubic_capacity, power_, category_id) VALUES (11, 'BMW', '645', 120, 2007, 4500, 335, 3);
 INSERT INTO vehicles (id, manufacture, model, stanadart_price, year, cubic_capacity, power_, category_id) VALUES (12, 'BMW', '645', 120, 2007, 4500, 336, 1);
+INSERT INTO vehicles (id, manufacture, model, stanadart_price, year, cubic_capacity, power_, category_id) VALUES (13, 'YAMAHA', 'R1', 50, 2007, 1000, 170, 4);
+INSERT INTO vehicles (id, manufacture, model, stanadart_price, year, cubic_capacity, power_, category_id) VALUES (14, 'Kawasaki', 'ER-6', 60, 2007, 4500, 336, 4);
+INSERT INTO vehicles (id, manufacture, model, stanadart_price, year, cubic_capacity, power_, category_id) VALUES (15, 'Minsk', 'R250', 40, 2007, 4500, 336, 4);
 
 INSERT INTO cars (fuel_type, gearbox, transmission, vehicle_id) VALUES ('PETROL', 'SEMI_AUTOMATIC', 'REAR_WHEEL', 1);
 INSERT INTO cars (fuel_type, gearbox, transmission, vehicle_id) VALUES ('PETROL', 'SEMI_AUTOMATIC', 'REAR_WHEEL', 2);
@@ -44,3 +103,14 @@ INSERT INTO cars (fuel_type, gearbox, transmission, vehicle_id) VALUES ('PETROL'
 INSERT INTO cars (fuel_type, gearbox, transmission, vehicle_id) VALUES ('PETROL', 'SEMI_AUTOMATIC', 'REAR_WHEEL', 10);
 INSERT INTO cars (fuel_type, gearbox, transmission, vehicle_id) VALUES ('PETROL', 'SEMI_AUTOMATIC', 'REAR_WHEEL', 11);
 INSERT INTO cars (fuel_type, gearbox, transmission, vehicle_id) VALUES ('PETROL', 'SEMI_AUTOMATIC', 'REAR_WHEEL', 12);
+
+INSERT INTO motorcycles (type, vehicle_id) VALUES ('SPORT', 13);
+INSERT INTO motorcycles (type, vehicle_id) VALUES ('SPORT', 14);
+INSERT INTO motorcycles (type, vehicle_id) VALUES ('SPORT', 15);
+
+INSERT INTO reservations (datetime_return, datetime_take, is_payed, bill_id, status_id, user_id, vehicle_id)
+VALUES ('2017-04-12 13:00:00', '2017-04-16 13:00:00', TRUE ,1, 3, 3, 4);
+INSERT INTO reservations (datetime_return, datetime_take, is_payed, bill_id, status_id, user_id, vehicle_id)
+VALUES ('2017-04-15 13:00:00', '2017-04-19 13:00:00', TRUE ,2, 1, 2, 2);
+
+insert into damage_bills (commend, cost, reservation_id) values ('Damaged door', 50, 1);

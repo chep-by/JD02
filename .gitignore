@@ -24,3 +24,7 @@ hs_err_pid*
 *.iml
 **/target
 
+/database/src/main/java/by/itacademy/dao/
+/database/src/test/java/by/itacademy/daotests/
+/database/src/main/resources/hibernate.cfg.xml
+/database/src/test/resources/hibernate.cfg.xml

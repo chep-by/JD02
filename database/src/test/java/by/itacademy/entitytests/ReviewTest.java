@@ -1,54 +1,22 @@
 package by.itacademy.entitytests;
 
-import by.itacademy.BaseTest;
-import by.itacademy.entity.Commend;
 import by.itacademy.entity.Review;
-import by.itacademy.entity.Role;
-import by.itacademy.entity.User;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+import by.itacademy.repository.ReviewRepository;
 import org.junit.Assert;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.HashSet;
-import java.util.Set;
+public class ReviewTest extends BaseEntityTest {
 
-public class ReviewTest extends BaseTest {
+    @Autowired
+    private ReviewRepository reviewRepository;
 
     @Test
     public void saveTest() {
 
-        Session session = SESSION_FACTORY.openSession();
-        Transaction transaction = session.beginTransaction();
+        Review reviewFind = reviewRepository.findOne(1L);
 
-        Role role = new Role();
-        role.setRole("admin");
-        Set<Role> roles = new HashSet<>();
-        roles.add(role);
-        session.save(role);
-
-        User user = new User();
-        user.setLogin("1");
-        user.setPassword("1");
-        user.setRoles(roles);
-        session.save(user);
-
-        Commend commend = new Commend();
-        commend.setCommend("blah-blah");
-
-        Review review = new Review();
-        review.setUser(user);
-        review.setCommend(commend);
-
-        session.save(review);
-
-        Review reviewFind = session.get(Review.class, 1L);
-
-        Assert.assertEquals(reviewFind.getUser(), user);
-        Assert.assertEquals(reviewFind.getCommend().getCommend(), "blah-blah");
-
-        transaction.commit();
-        session.close();
+        Assert.assertEquals(reviewFind.getUser().getLogin(), "max");
     }
 
 }

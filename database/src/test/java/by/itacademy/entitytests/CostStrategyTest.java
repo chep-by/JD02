@@ -1,32 +1,22 @@
 package by.itacademy.entitytests;
 
-import by.itacademy.BaseTest;
 import by.itacademy.entity.CostStrategy;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+import by.itacademy.repository.CostStrategyRepository;
 import org.junit.Assert;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
-public class CostStrategyTest extends BaseTest {
+public class CostStrategyTest extends BaseEntityTest {
+
+    @Autowired
+    private CostStrategyRepository costStrategyRepository;
 
     @Test
     public void saveCostStrategyTest() {
 
-        Session session = SESSION_FACTORY.openSession();
-        Transaction transaction = session.beginTransaction();
+        CostStrategy findCostStrategy = costStrategyRepository.findOne(1L);
 
-        CostStrategy costStrategy = new CostStrategy();
-        costStrategy.setStrategy("our strategy");
-
-        session.save(costStrategy);
-
-        CostStrategy findCostStrategy = session.get(CostStrategy.class, 1L);
-
-        Assert.assertEquals(findCostStrategy.getStrategy(), "our strategy");
-
-
-        transaction.commit();
-        session.close();
+        Assert.assertEquals(findCostStrategy.getStrategy(), "1-100__3-95__5_90");
     }
 
 }
