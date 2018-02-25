@@ -1,6 +1,6 @@
 package by.itacademy;
 
-import by.itacademy.config.ServiceConfiguration;
+import by.itacademy.config.ServiceConfig;
 import by.itacademy.dto.CarDto;
 import by.itacademy.entity.Car;
 import org.junit.Assert;
@@ -13,7 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = ServiceConfiguration.class)
+@ContextConfiguration(classes = ServiceConfig.class)
 public class CarServiceImplTest {
 
     @Autowired

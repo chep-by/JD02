@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Select cars</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-chained/1.0.1/jquery.chained.min.js"></script>
+    <script>
+        $(function () {
+            $("#model").chained("#manufacture");
+        })
+    </script>
+</head>
+<body>
+<div>
+    <div width="400" style="padding-left: 150px; display:inline-block; text-align: center">
+        <form th:action="@{/select_cars}" method="get" th:object="${carDto}">
+            <p>
+                <b>Марка</b><br>
+                <select th:field="*{manufacture}" id="manufacture">
+                    <option th:each="manufacture : ${allManufactures}" th:value="${manufacture}"
+                            th:text="${manufacture}">
+                        BMW
+                    </option>
+                </select>
+            </p>
+            <p>
+                <b>Модель</b><br>
+                <select th:field="*{model}" id="model" required>
+                    <option th:each="BMW : ${allBMW}" th:value="${BMW}" th:text="${BMW}" class="BMW">645</option>
+                    <option th:each="Audi : ${allAudi}" th:value="${Audi}" th:text="${Audi}" class="AUDI">a3</option>
+                </select>
+            </p>
+            <p>Год:</p>
+            <div th:with="currentYear=${#dates.year(#dates.createNow())}">
+                <p>
+                    <select th:field="*{yearMin}">
+                        <option
+                                th:each="i: ${#numbers.sequence(currentYear, currentYear - 40)}"
+                                th:value="${i}" th:text="${i}">1980
+                        </option>
+                    </select>-
+                    <select th:field="*{yearMax}">
+                        <option
+                                th:each="i: ${#numbers.sequence(currentYear, currentYear - 40)}"
+                                th:value="${i}" th:text="${i}">1980
+                        </option>
+                    </select>
+                </p>
+            </div>
+            <p>Отображать на странице:</p>
+            <select th:field="*{perPage}" required>
+                <option th:value="2" th:text="2">2</option>
+                <option th:value="3" th:text="3">3</option>
+                <option th:value="5" th:text="5">5</option>
+            </select>
+            <input type="hidden" id="page" name="page" value="1">
+            <p>
+                <input type="submit" value="Отправить">
+                <input type="reset" value="Очистить">
+            </p>
+        </form>
+    </div>
+    <div width="800" style="padding-left: 150px; display:inline-block; text-align: center; vertical-align: top">
+        <p th:if="${carsList.isEmpty()}" th:text="'Not fount'"></p>
+        <table th:if="${!carsList.isEmpty()}">
+            <tr>
+                <td>Марка</td>
+                <td>Модель</td>
+                <td>Год</td>
+                <td>Цена</td>
+                <td>Мощность</td>
+            </tr>
+            <tr th:each="car : ${carsList}">
+                <td th:text="${car.manufacture}">${car.manufacture}</td>
+                <td th:text="${car.model}">${car.model}</td>
+                <td th:text="${car.year}">${car.year}</td>
+                <td th:text="${car.standardPrice}">${car.standardPrice}</td>
+                <td th:text="${car.power}">${car.power}</td>
+            </tr>
+        </table>
+
+        <div th:with="req = ${#httpServletRequest.queryString}, reqsize = ${#httpServletRequest.queryString.length() - 1}"
+             th:if="${!carsList.isEmpty()}">
+            pages
+            <table>
+                <tr>
+                    <td th:each="i: ${#numbers.sequence(1, countPages)}">
+                        <a th:href="@{${#httpServletRequest.requestURL}+'?'+${req.substring(0, reqsize)}+${i}}"
+                           th:text="${i}">
+                            ${loop.index}
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

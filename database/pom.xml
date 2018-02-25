@@ -22,11 +22,6 @@
   </properties>
 
   <dependencies>
-    <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-      <version>1.16.12</version>
-    </dependency>
 
     <dependency>
       <groupId>mysql</groupId>
@@ -52,23 +47,23 @@
       <version>${hibernateVersion}</version>
     </dependency>
 
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-core</artifactId>
-      <version>${springVersion}</version>
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>org.springframework</groupId>-->
+      <!--<artifactId>spring-core</artifactId>-->
+      <!--<version>${springVersion}</version>-->
+    <!--</dependency>-->
 
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-context</artifactId>
-      <version>${springVersion}</version>
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>org.springframework</groupId>-->
+      <!--<artifactId>spring-context</artifactId>-->
+      <!--<version>${springVersion}</version>-->
+    <!--</dependency>-->
 
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-test</artifactId>
-      <version>${springVersion}</version>
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>org.springframework</groupId>-->
+      <!--<artifactId>spring-test</artifactId>-->
+      <!--<version>${springVersion}</version>-->
+    <!--</dependency>-->
 
     <dependency>
       <groupId>org.springframework.data</groupId>
