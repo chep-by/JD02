@@ -1,6 +1,7 @@
 package by.itacademy;
 
 import by.itacademy.config.PersistenceConfig;
+import by.itacademy.config.SecurityConfig;
 import by.itacademy.config.ServiceConfig;
 import by.itacademy.config.WebConfig;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
@@ -9,7 +10,7 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[]{PersistenceConfig.class, ServiceConfig.class};
+        return new Class[]{PersistenceConfig.class, ServiceConfig.class, SecurityConfig.class};
     }
 
     @Override

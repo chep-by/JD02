@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="components/head"></th:block>
+
+    <title>Sticky Footer Navbar Template for Bootstrap</title>
+    <link href="/resources/css/signin.css" rel="stylesheet">
+</head>
+<body>
+<div th:replace="components/header :: header"></div>
+
+<div class="container">
+    <form class="form-signin" th:action="@{/signin}" th:method="post" role="form">
+        <h2 class="form-signin-heading text-center" th:text="#{sign.sign}">Please sign in</h2>
+        <input th:name="login" type="text" class="form-control" th:placeholder="#{login.sign}" required autofocus>
+        <input th:name="pass" type="password" class="form-control" th:placeholder="#{pass.sign}" required>
+        <!--<label class="checkbox">-->
+        <!--<input type="checkbox" value="remember-me"> Remember me-->
+        <!--</label>-->
+        <button class="btn btn-lg btn-primary btn-block" type="submit" th:text="#{sign.nav}">Sign in</button>
+    </form>
+        <div th:class="text-center" th:if="${#request.queryString != null && #request.queryString.contains('error')}">
+            <p class="lead text-danger" th:text="#{incorrectdata.sign}">Имя пользователя или пароль введены неверно</p>
+        </div>
+</div>
+
+    <div th:replace="components/footer :: footer"></div>
+    <div th:replace="components/scripts"></div>
+</body>
+</html>

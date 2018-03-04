@@ -1,20 +1,17 @@
 package by.itacademy;
 
-import by.itacademy.config.ServiceConfig;
 import by.itacademy.dto.CarDto;
 import by.itacademy.entity.Car;
+import by.itacademy.service.CarService;
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-@RunWith(SpringRunner.class)
-@ContextConfiguration(classes = ServiceConfig.class)
-public class CarServiceImplTest {
+public class CarServiceImplTest extends BaseServiceTest{
 
     @Autowired
     private CarService carService;
@@ -43,6 +40,23 @@ public class CarServiceImplTest {
         Long aLong = carService.getCount(carDto);
 
         Assert.assertTrue(aLong == 7L);
+
+    }
+
+    @Test
+    public void getAllManufacturesTest() {
+        List<String> allManufactures = carService.getAllManufactures();
+
+        Assert.assertEquals(allManufactures.size(), 2);
+    }
+
+    @Test
+    public void getMapManufactureModelsTest() {
+        Map<String, List<String>> manufactureModelsMap = new HashMap<>();
+        List<String> allManufactures = carService.getAllManufactures();
+        allManufactures
+                .forEach(manufacture -> manufactureModelsMap.put(manufacture, carService.getAllModelsByManufacture(manufacture)));
+        Assert.assertTrue(manufactureModelsMap.size() == 2);
 
     }
 }

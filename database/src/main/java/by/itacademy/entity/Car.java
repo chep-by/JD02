@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString
+@ToString (callSuper = true)
 @Entity
 @Table(name = "cars")
 @PrimaryKeyJoinColumn(name = "vehicle_id")

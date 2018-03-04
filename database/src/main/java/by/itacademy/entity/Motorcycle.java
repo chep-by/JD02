@@ -4,6 +4,7 @@ import by.itacademy.enums.MotorcycleType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,6 +18,7 @@ import javax.persistence.Table;
 @Setter
 @NoArgsConstructor
 @Entity
+@ToString(callSuper = true)
 @Table(name = "motorcycles")
 @PrimaryKeyJoinColumn(name = "vehicle_id")
 public class Motorcycle extends Vehicle {

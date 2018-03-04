@@ -10,4 +10,5 @@ public interface CarRepositoryCustom {
     Long checkCount(CarDto carDto);
 
     List<Car> findByParams(CarDto carDto);
+
 }

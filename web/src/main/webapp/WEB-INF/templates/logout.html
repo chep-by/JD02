@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="components/head"></th:block>
+
+    <title>Sticky Footer Navbar Template for Bootstrap</title>
+    <script>
+        window.setTimeout(function(){
+
+            // Move to a new location or you can do something else
+            window.location.href = "/";
+
+        }, 5000)
+    </script>
+</head>
+<body>
+<div th:replace="components/header :: header"></div>
+
+<div class="container">
+    <div class="text-center">
+       <p class="align-middle lead">Вы вышли из системы. Через 5 секунд вы вернетесь на главную страницу</p>
+    </div>
+    <!--Input your's code here-->
+</div>
+
+<div th:replace="components/footer :: footer"></div>
+<div th:replace="components/scripts"></div>
+</body>
+</html>

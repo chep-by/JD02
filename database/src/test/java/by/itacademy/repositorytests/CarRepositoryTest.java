@@ -41,4 +41,18 @@ public class CarRepositoryTest extends BaseRepositoryTest{
         Assert.assertEquals(carList.size(), 3);
 
     }
+
+    @Test
+    public void findAllManufacturesTest() {
+        List<String> allManufactures = carRepository.findAllManufactures();
+
+        Assert.assertEquals(allManufactures.size(), 2);
+    }
+
+    @Test
+    public void findAllModelsByManufacture() {
+        List<String> bmw = carRepository.findAllModelsByManufacture("BMW");
+
+        Assert.assertEquals(bmw.size(), 3);
+    }
 }
