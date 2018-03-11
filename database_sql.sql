@@ -13,7 +13,8 @@ create table additional_reviews (id bigint not null auto_increment, commend_text
 create table vehicles (id bigint not null auto_increment, cubic_capacity int not null, manufacture varchar(30) not null, model varchar(30) not null, power_ int not null, stanadart_price int not null, year int not null, category_id bigint not null, primary key (id), foreign key (category_id) references vehicle_categories (id));
 create table motorcycles (type varchar(14) not null, vehicle_id bigint not null, primary key (vehicle_id), foreign key (vehicle_id) references vehicles (id));
 create table cars (fuel_type varchar(12) not null, gearbox varchar(15) not null, transmission varchar(12) not null, vehicle_id bigint not null, primary key (vehicle_id), foreign key (vehicle_id) references vehicles (id));
-create table reservations (id bigint not null auto_increment, commend varchar(255), datetime_return datetime, datetime_take datetime, is_payed bit not null, bill_id bigint not null unique, status_id bigint not null, user_id bigint not null, vehicle_id bigint not null, primary key (id), foreign key (bill_id) references bills (id), foreign key (status_id) references reservation_statuses (id), foreign key (user_id) references users (id), foreign key (vehicle_id) references vehicles (id));
+create table photos (id bigint not null auto_increment, vehicle_id bigint not null, url VARCHAR(255), primary key (id), foreign key (vehicle_id) references vehicles(id));
+create table reservations (id bigint not null auto_increment, commend varchar(255), datetime_return datetime, datetime_take datetime, is_payed bit not null, bill_id bigint not null unique, status_id bigint not null, user_id bigint not null, vehicle_id bigint not null, version int, primary key (id), foreign key (bill_id) references bills (id), foreign key (status_id) references reservation_statuses (id), foreign key (user_id) references users (id), foreign key (vehicle_id) references vehicles (id));
 create table damage_bills (id bigint not null auto_increment, commend varchar(255) not null, cost int not null, reservation_id bigint not null unique, primary key (id), foreign key (reservation_id) references reservations (id));
 
 /* test table*/
@@ -107,6 +108,52 @@ INSERT INTO cars (fuel_type, gearbox, transmission, vehicle_id) VALUES ('PETROL'
 INSERT INTO motorcycles (type, vehicle_id) VALUES ('SPORT', 13);
 INSERT INTO motorcycles (type, vehicle_id) VALUES ('SPORT', 14);
 INSERT INTO motorcycles (type, vehicle_id) VALUES ('SPORT', 15);
+
+INSERT INTO photos (vehicle_id, url) VALUES (1, 'main-https://s.aolcdn.com/dims-global/dims3/GLOB/legacy_thumbnail/788x525/quality/85/https://s.aolcdn.com/commerce/autodata/images/CAB50BMC271A0101.jpg');
+INSERT INTO photos (vehicle_id, url) VALUES (1, 'https://hips.hearstapps.com/amv-prod-cad-assets.s3.amazonaws.com/images/04q1/267350/bmw-645ci-photo-9324-s-original.jpg');
+INSERT INTO photos (vehicle_id, url) VALUES (1, 'https://cdn.shopify.com/s/files/1/0848/1940/products/QuickSilver_BM650S_Fit_3_MED_RES_0db83a2c-3344-45f1-8ea6-2849a7c389bf.jpg?v=1490881421');
+INSERT INTO photos (vehicle_id, url) VALUES (1, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9i0gI0t6KLqMod7WZg-nBda2Pn0Yqo0gcg9PFZtNmpNy8xY9H');
+INSERT INTO photos (vehicle_id, url) VALUES (2, 'main-https://s.aolcdn.com/dims-global/dims3/GLOB/legacy_thumbnail/788x525/quality/85/https://s.aolcdn.com/commerce/autodata/images/CAB50BMC271A0101.jpg');
+INSERT INTO photos (vehicle_id, url) VALUES (2, 'https://hips.hearstapps.com/amv-prod-cad-assets.s3.amazonaws.com/images/04q1/267350/bmw-645ci-photo-9324-s-original.jpg');
+INSERT INTO photos (vehicle_id, url) VALUES (2, 'https://cdn.shopify.com/s/files/1/0848/1940/products/QuickSilver_BM650S_Fit_3_MED_RES_0db83a2c-3344-45f1-8ea6-2849a7c389bf.jpg?v=1490881421');
+INSERT INTO photos (vehicle_id, url) VALUES (2, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9i0gI0t6KLqMod7WZg-nBda2Pn0Yqo0gcg9PFZtNmpNy8xY9H');
+INSERT INTO photos (vehicle_id, url) VALUES (3, 'main-https://s.aolcdn.com/dims-global/dims3/GLOB/legacy_thumbnail/788x525/quality/85/https://s.aolcdn.com/commerce/autodata/images/CAB50BMC271A0101.jpg');
+INSERT INTO photos (vehicle_id, url) VALUES (3, 'https://hips.hearstapps.com/amv-prod-cad-assets.s3.amazonaws.com/images/04q1/267350/bmw-645ci-photo-9324-s-original.jpg');
+INSERT INTO photos (vehicle_id, url) VALUES (3, 'https://cdn.shopify.com/s/files/1/0848/1940/products/QuickSilver_BM650S_Fit_3_MED_RES_0db83a2c-3344-45f1-8ea6-2849a7c389bf.jpg?v=1490881421');
+INSERT INTO photos (vehicle_id, url) VALUES (3, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9i0gI0t6KLqMod7WZg-nBda2Pn0Yqo0gcg9PFZtNmpNy8xY9H');
+INSERT INTO photos (vehicle_id, url) VALUES (4, 'main-https://s.aolcdn.com/commerce/autodata/images/USC70AUC017A021001.jpg');
+INSERT INTO photos (vehicle_id, url) VALUES (4, 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Audi_A4_2.0_TFSI_quattro.jpg/1200px-Audi_A4_2.0_TFSI_quattro.jpg');
+INSERT INTO photos (vehicle_id, url) VALUES (5, 'main-https://s.aolcdn.com/commerce/autodata/images/USC80AUC191A121001.jpg');
+INSERT INTO photos (vehicle_id, url) VALUES (5, 'http://img2.autonavigator.ru/pics/030/763/94107_800.jpg?max=1024');
+INSERT INTO photos (vehicle_id, url) VALUES (6, 'main-https://s.aolcdn.com/commerce/autodata/images/USC60AUC021B021001.jpg');
+INSERT INTO photos (vehicle_id, url) VALUES (6, 'https://www.audi.ru/content/dam/nemo/ru/models/a6/a6/my-2017/1920x1080-gallery/1920x1080_QA6_D_141019_1.jpg');
+INSERT INTO photos (vehicle_id, url) VALUES (7, 'main-https://s.aolcdn.com/dims-global/dims3/GLOB/legacy_thumbnail/788x525/quality/85/https://s.aolcdn.com/commerce/autodata/images/CAB50BMC271A0101.jpg');
+INSERT INTO photos (vehicle_id, url) VALUES (7, 'https://hips.hearstapps.com/amv-prod-cad-assets.s3.amazonaws.com/images/04q1/267350/bmw-645ci-photo-9324-s-original.jpg');
+INSERT INTO photos (vehicle_id, url) VALUES (7, 'https://cdn.shopify.com/s/files/1/0848/1940/products/QuickSilver_BM650S_Fit_3_MED_RES_0db83a2c-3344-45f1-8ea6-2849a7c389bf.jpg?v=1490881421');
+INSERT INTO photos (vehicle_id, url) VALUES (7, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9i0gI0t6KLqMod7WZg-nBda2Pn0Yqo0gcg9PFZtNmpNy8xY9H');
+INSERT INTO photos (vehicle_id, url) VALUES (8, 'main-https://s.aolcdn.com/dims-global/dims3/GLOB/legacy_thumbnail/788x525/quality/85/https://s.aolcdn.com/commerce/autodata/images/CAB50BMC271A0101.jpg');
+INSERT INTO photos (vehicle_id, url) VALUES (8, 'https://hips.hearstapps.com/amv-prod-cad-assets.s3.amazonaws.com/images/04q1/267350/bmw-645ci-photo-9324-s-original.jpg');
+INSERT INTO photos (vehicle_id, url) VALUES (8, 'https://cdn.shopify.com/s/files/1/0848/1940/products/QuickSilver_BM650S_Fit_3_MED_RES_0db83a2c-3344-45f1-8ea6-2849a7c389bf.jpg?v=1490881421');
+INSERT INTO photos (vehicle_id, url) VALUES (8, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9i0gI0t6KLqMod7WZg-nBda2Pn0Yqo0gcg9PFZtNmpNy8xY9H');
+INSERT INTO photos (vehicle_id, url) VALUES (9, 'main-https://s.aolcdn.com/dims-global/dims3/GLOB/legacy_thumbnail/788x525/quality/85/https://s.aolcdn.com/commerce/autodata/images/CAB50BMC271A0101.jpg');
+INSERT INTO photos (vehicle_id, url) VALUES (9, 'https://hips.hearstapps.com/amv-prod-cad-assets.s3.amazonaws.com/images/04q1/267350/bmw-645ci-photo-9324-s-original.jpg');
+INSERT INTO photos (vehicle_id, url) VALUES (9, 'https://cdn.shopify.com/s/files/1/0848/1940/products/QuickSilver_BM650S_Fit_3_MED_RES_0db83a2c-3344-45f1-8ea6-2849a7c389bf.jpg?v=1490881421');
+INSERT INTO photos (vehicle_id, url) VALUES (9, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9i0gI0t6KLqMod7WZg-nBda2Pn0Yqo0gcg9PFZtNmpNy8xY9H');
+INSERT INTO photos (vehicle_id, url) VALUES (10, 'main-https://s.aolcdn.com/dims-global/dims3/GLOB/legacy_thumbnail/788x525/quality/85/https://s.aolcdn.com/commerce/autodata/images/CAB50BMC271A0101.jpg');
+INSERT INTO photos (vehicle_id, url) VALUES (10, 'https://hips.hearstapps.com/amv-prod-cad-assets.s3.amazonaws.com/images/04q1/267350/bmw-645ci-photo-9324-s-original.jpg');
+INSERT INTO photos (vehicle_id, url) VALUES (10, 'https://cdn.shopify.com/s/files/1/0848/1940/products/QuickSilver_BM650S_Fit_3_MED_RES_0db83a2c-3344-45f1-8ea6-2849a7c389bf.jpg?v=1490881421');
+INSERT INTO photos (vehicle_id, url) VALUES (10, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9i0gI0t6KLqMod7WZg-nBda2Pn0Yqo0gcg9PFZtNmpNy8xY9H');
+INSERT INTO photos (vehicle_id, url) VALUES (11, 'main-https://s.aolcdn.com/dims-global/dims3/GLOB/legacy_thumbnail/788x525/quality/85/https://s.aolcdn.com/commerce/autodata/images/CAB50BMC271A0101.jpg');
+INSERT INTO photos (vehicle_id, url) VALUES (11, 'https://hips.hearstapps.com/amv-prod-cad-assets.s3.amazonaws.com/images/04q1/267350/bmw-645ci-photo-9324-s-original.jpg');
+INSERT INTO photos (vehicle_id, url) VALUES (11, 'https://cdn.shopify.com/s/files/1/0848/1940/products/QuickSilver_BM650S_Fit_3_MED_RES_0db83a2c-3344-45f1-8ea6-2849a7c389bf.jpg?v=1490881421');
+INSERT INTO photos (vehicle_id, url) VALUES (11, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9i0gI0t6KLqMod7WZg-nBda2Pn0Yqo0gcg9PFZtNmpNy8xY9H');
+INSERT INTO photos (vehicle_id, url) VALUES (12, 'main-https://s.aolcdn.com/dims-global/dims3/GLOB/legacy_thumbnail/788x525/quality/85/https://s.aolcdn.com/commerce/autodata/images/CAB50BMC271A0101.jpg');
+INSERT INTO photos (vehicle_id, url) VALUES (12, 'https://hips.hearstapps.com/amv-prod-cad-assets.s3.amazonaws.com/images/04q1/267350/bmw-645ci-photo-9324-s-original.jpg');
+INSERT INTO photos (vehicle_id, url) VALUES (12, 'https://cdn.shopify.com/s/files/1/0848/1940/products/QuickSilver_BM650S_Fit_3_MED_RES_0db83a2c-3344-45f1-8ea6-2849a7c389bf.jpg?v=1490881421');
+INSERT INTO photos (vehicle_id, url) VALUES (12, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9i0gI0t6KLqMod7WZg-nBda2Pn0Yqo0gcg9PFZtNmpNy8xY9H');
+INSERT INTO photos (vehicle_id, url) VALUES (13, 'main-https://cloud.yamahamotorsports.com/library/img.jpg?id=5a0342352a0ab62a4c816d51&w=840');
+INSERT INTO photos (vehicle_id, url) VALUES (14, 'main-http://moto.ironhorse.ru/wp-content/uploads/2011/07/kawasaki-er-6f.jpg');
+INSERT INTO photos (vehicle_id, url) VALUES (15, 'main-https://static.baza.farpost.ru/v/1369203294924_bulletin');
 
 INSERT INTO reservations (datetime_return, datetime_take, is_payed, bill_id, status_id, user_id, vehicle_id)
 VALUES ('2017-04-12 13:00:00', '2017-04-16 13:00:00', TRUE ,1, 3, 3, 4);

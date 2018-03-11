@@ -11,7 +11,9 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.List;
 
 @Getter
 @Setter
@@ -43,4 +45,8 @@ public class Vehicle extends BaseEntity {
 
     @Column(name = "stanadart_price", nullable = false)
     private int standardPrice;
+
+    @OneToMany(mappedBy = "vehicle", orphanRemoval = true)
+    private List<Photos> photos;
+
 }

@@ -27,8 +27,8 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Cacheable(cacheNames = "request")
     @Override
-    public List<Object[]> getModelManufactureYearStandardCostRandomSixVehicles() {
-        return vehicleRepository.getModelManufactureYearStandardCostRandomSixVehicles(countOfVehicles());
+    public List<Object[]> getModelManufactureYearStandardCostMainImgRandomVehicles(int countOfRows) {
+        return vehicleRepository.getModelManufactureYearStandardCostMainImgRandomVehicles(countOfRows);
     }
 
     @Override

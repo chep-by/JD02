@@ -5,9 +5,6 @@ import by.itacademy.repository.VehicleRepository;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.ArrayList;
-import java.util.Random;
-
 public class VehicleRepositoryTest extends BaseRepositoryTest {
 
     @Autowired
@@ -23,6 +20,6 @@ public class VehicleRepositoryTest extends BaseRepositoryTest {
     @Test
     public void getModelManufactureYearStandardCostRandomSixVehiclesTest() {
 
-        System.out.println(vehicleRepository.getModelManufactureYearStandardCostRandomSixVehicles(15L));
+        System.out.println(vehicleRepository.getModelManufactureYearStandardCostMainImgRandomVehicles(6));
     }
 }

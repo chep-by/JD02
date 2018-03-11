@@ -23,7 +23,7 @@
     <div class="row row-flex">
         <th:block th:each="vehicle : ${vehicles}">
             <div class="col-lg-4">
-                <img th:src="@{/resources/images/vehicles/{id}/main.jpg(id=${vehicle[0]})}" alt="img"
+                <img th:src="@{${vehicle[5].substring(5)}}" alt="img"
                      class="img-responsive">
                 <p class="text-danger lead" th:text="${vehicle[2] + ' ' + vehicle[1] + ' ' + vehicle[4] + ' г.в.'}"></p>
                 <p class="bg-warning lead" th:text="${vehicle[3] + ' рублей'}"></p>

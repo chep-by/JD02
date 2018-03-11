@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Version;
 import java.time.LocalDateTime;
 
 @Getter
@@ -50,5 +51,9 @@ public class Reservation extends BaseEntity {
 
     @OneToOne(mappedBy = "reservation")
     private DamageBill damageBill;
+
+    @Version
+    @Column (name = "version")
+    private int version;
 
 }

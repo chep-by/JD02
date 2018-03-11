@@ -8,7 +8,7 @@ public interface VehicleService {
 
     Long countOfVehicles();
 
-    List<Object[]> getModelManufactureYearStandardCostRandomSixVehicles();
+    List<Object[]> getModelManufactureYearStandardCostMainImgRandomVehicles(int countOfRows);
 
     Vehicle findOne(Long id);
 }

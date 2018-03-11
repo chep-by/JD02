@@ -20,7 +20,7 @@ public class HomePageController {
 
     @ModelAttribute("vehicles")
     private List<Object[]> sixVehicles() {
-        return vehicleService.getModelManufactureYearStandardCostRandomSixVehicles();
+        return vehicleService.getModelManufactureYearStandardCostMainImgRandomVehicles(6);
     }
 
     @GetMapping("/")

@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface VehicleRepositoryCustom {
 
-    List<Object[]> getModelManufactureYearStandardCostRandomSixVehicles(Long countOfVehicles);
+    List<Object[]> getModelManufactureYearStandardCostMainImgRandomVehicles(int countOfRows);
 }
