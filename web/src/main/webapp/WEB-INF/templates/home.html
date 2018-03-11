@@ -11,11 +11,29 @@
 
 <div class="container">
 
-    <div class="mt-1">
-        <h1>Sticky footer</h1>
+    <!-- Jumbotron -->
+    <div class="jumbotron">
+        <h1>Без машины хорошо?</h1>
+        <h2>А с машиной лучше!</h2>
+        <p class="lead">Добро пожаловать к лидерам в области аренды автомобилей в Минске</p>
+        <!--<p><a class="btn btn-lg btn-success" href="#" role="button">Get started today</a></p>-->
     </div>
-    <p class="lead" >Pin a fixed-height footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS.</p>
-    <p>Use <a href="../sticky-footer-navbar">the sticky footer with a fixed navbar</a> if need be, too.</p>
+
+    <!-- Example row of columns -->
+    <div class="row row-flex">
+        <th:block th:each="vehicle : ${vehicles}">
+            <div class="col-lg-4">
+                <img th:src="@{/resources/images/vehicles/{id}/main.jpg(id=${vehicle[0]})}" alt="img"
+                     class="img-responsive">
+                <p class="text-danger lead" th:text="${vehicle[2] + ' ' + vehicle[1] + ' ' + vehicle[4] + ' г.в.'}"></p>
+                <p class="bg-warning lead" th:text="${vehicle[3] + ' рублей'}"></p>
+                <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
+            </div>
+        </th:block>
+    </div>
+    <div>
+        <a href="/select_cars" class="btn btn-info btn-lg btn-block" role="button">Больше авто!</a>
+    </div>
 </div>
 
 <div th:replace="components/footer :: footer"></div>

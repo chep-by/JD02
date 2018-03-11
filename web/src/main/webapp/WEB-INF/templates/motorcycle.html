@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="components/head"></th:block>
+
+    <title>Sticky Footer Navbar Template for Bootstrap</title>
+    <link href="/resources/css/custom.css" rel="stylesheet">
+
+</head>
+<body>
+<div th:replace="components/header :: header"></div>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="preview-pic tab-content">
+                <div class="tab-pane active" id="pic-0"><img th:src="@{/resouces/images/vehicles/{id}/main.jpg(id=${motorcycle.id})}">
+                </div>
+                <th:block th:each="i: ${#numbers.sequence(1, imagesCount)}">
+                <div class="tab-pane" th:id="${'pic-'+ ${i}}"><img
+                        th:src="@{/resouces/images/vehicles/{id}/{img}(id=${motorcycle.id}, img = ${i + '.jpg'})}"/>
+                </div>
+                </th:block>
+            </div>
+            <ul class="preview-thumbnail nav nav-tabs">
+                <li class="active"><a data-target="#pic-0" data-toggle="tab">
+                    <div class="thumbnail"><img
+                            th:src="@{/resouces/images/vehicles/{id}/main.jpg(id=${motorcycle.id})}"/>
+                    </div>
+                </a></li>
+                <th:block th:each="i: ${#numbers.sequence(1, imagesCount)}">
+                <li><a  th:data-target="${'#pic-' + i}" data-toggle="tab">
+                    <div class="thumbnail"><img
+                            th:src="@{/resouces/images/vehicles/{id}/{img}(id=${motorcycle.id}, img = ${i + '.jpg'})}"/>
+                    </div>
+                </a></li>
+                </th:block>
+            </ul>
+        </div>
+        <div class="col-md-8">
+            <table class="table table-bordered">
+            <tr>
+                <td>Марка</td>
+                <td>Модель</td>
+                <td>Год</td>
+                <td>Цена</td>
+                <td>Мощность</td>
+            </tr>
+            </table>
+
+        </div>
+    </div>
+</div>
+<!--Input your's code here-->
+
+<div th:replace="components/footer :: footer"></div>
+<div th:replace="components/scripts"></div>
+</body>
+</html>

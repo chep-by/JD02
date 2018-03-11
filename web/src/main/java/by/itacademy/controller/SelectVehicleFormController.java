@@ -17,7 +17,6 @@ import java.util.Map;
 
 
 @Controller
-@SessionAttributes({"allManufactureModelsMap"})
 public class SelectVehicleFormController {
 
     private CarService carService;

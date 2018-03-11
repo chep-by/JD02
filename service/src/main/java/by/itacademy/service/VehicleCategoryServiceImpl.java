@@ -23,4 +23,8 @@ public class VehicleCategoryServiceImpl implements VehicleCategoryService {
     public List<String> getAllVehicleCategories() {
         return vehicleCategoryRepository.findAllCategoriesNames();
     }
+
+
+
+
 }
