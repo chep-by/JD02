@@ -6,23 +6,23 @@ import by.itacademy.service.CarService;
 import by.itacademy.service.VehicleCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
 
 @Controller
-public class SelectVehicleFormController {
+public class SelectVehicleFormControllerV2 {
 
     private CarService carService;
     private VehicleCategoryService vehicleCategoryService;
 
     @Autowired
-    public SelectVehicleFormController(CarService carService, VehicleCategoryService vehicleCategoryService) {
+    public SelectVehicleFormControllerV2(CarService carService, VehicleCategoryService vehicleCategoryService) {
         this.carService = carService;
         this.vehicleCategoryService = vehicleCategoryService;
     }
@@ -42,16 +42,24 @@ public class SelectVehicleFormController {
         return carService.getMapManufactureModels();
     }
 
-    @GetMapping("/select_cars")
-    public String viewForm(CarDto carDto, Model model, HttpServletRequest request) {
-        if (request.getQueryString() != null) {
-            int countPages = carService.getCountOfPages(carDto);
-            List<Car> carsByParams = carService.getCarsByParams(carDto);
-            model.addAttribute("carsList", carsByParams);
-            model.addAttribute("countPages", countPages);
-        }
-//        return "view_cars";
-        return "select_cars";
+    @GetMapping("/selectcarsv2")
+    public String viewForm() {
+        return "select_cars_v2";
+    }
+
+    @GetMapping("/getcarlist")
+    @ResponseBody
+    public List<Car> getCarList(CarDto carDto) {
+        System.out.println(carDto);
+        List<Car> carsByParams = carService.getCarsByParams(carDto);
+        return carsByParams;
+    }
+
+    @GetMapping("/getcountpages")
+    @ResponseBody
+    public int getCountPages(@RequestBody CarDto carDto) {
+        int countPages = carService.getCountOfPages(carDto);
+        return countPages;
     }
 
 //    @PostMapping("/select_cars")

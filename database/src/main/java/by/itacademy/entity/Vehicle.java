@@ -5,8 +5,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
@@ -46,7 +48,7 @@ public class Vehicle extends BaseEntity {
     @Column(name = "stanadart_price", nullable = false)
     private int standardPrice;
 
-    @OneToMany(mappedBy = "vehicle", orphanRemoval = true)
+    @OneToMany(mappedBy = "vehicle", fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     private List<Photos> photos;
 
 }

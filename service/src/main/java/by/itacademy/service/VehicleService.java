@@ -11,4 +11,6 @@ public interface VehicleService {
     List<Object[]> getModelManufactureYearStandardCostMainImgRandomVehicles(int countOfRows);
 
     Vehicle findOne(Long id);
+
+    void prepareAndSaveOrUpdateVehicle(Vehicle vehicle, String[] photoUrl, int main, String categoryName);
 }

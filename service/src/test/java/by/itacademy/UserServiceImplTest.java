@@ -19,8 +19,8 @@ public class UserServiceImplTest extends BaseServiceTest {
 
     @Test
     public void loadUserByUsernameSuccessfulTest() {
-        UserDetails admin = userService.loadUserByUsername("admin");
-        Assert.assertEquals(admin.getPassword(), "admin");
+        UserDetails max = userService.loadUserByUsername("max");
+        Assert.assertEquals(max.getPassword(), "adr3232");
     }
 
     @Test

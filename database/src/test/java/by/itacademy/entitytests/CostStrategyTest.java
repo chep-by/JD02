@@ -16,7 +16,7 @@ public class CostStrategyTest extends BaseEntityTest {
 
         CostStrategy findCostStrategy = costStrategyRepository.findOne(1L);
 
-        Assert.assertEquals(findCostStrategy.getStrategy(), "1-100__3-95__5_90");
+        Assert.assertEquals(findCostStrategy.getStrategy(), "1-100__3-95__5-90");
     }
 
 }

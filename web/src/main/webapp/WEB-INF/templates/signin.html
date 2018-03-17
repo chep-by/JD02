@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html th:with="lang=${#locale.language}" th:lang="${lang}" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <th:block th:replace="components/head"></th:block>
 
     <title>Sticky Footer Navbar Template for Bootstrap</title>
-    <link href="/resources/css/signin.css" rel="stylesheet">
+    <link th:href="@{/resources/css/signin.css}" rel="stylesheet">
 </head>
 <body>
-<div th:replace="components/header :: header"></div>
+<div th:replace="components/default_full :: nav"></div>
 
 <div class="container">
     <form class="form-signin" th:action="@{/signin}" th:method="post" role="form">
@@ -17,6 +17,7 @@
         <!--<label class="checkbox">-->
         <!--<input type="checkbox" value="remember-me"> Remember me-->
         <!--</label>-->
+        <a th:href="@{/registration}" th:text="#{sign.signUp}"></a>
         <button class="btn btn-lg btn-primary btn-block" type="submit" th:text="#{sign.nav}">Sign in</button>
     </form>
         <div th:class="text-center" th:if="${#request.queryString != null && #request.queryString.contains('error')}">
@@ -25,6 +26,6 @@
 </div>
 
     <div th:replace="components/footer :: footer"></div>
-    <div th:replace="components/scripts"></div>
+    <div th:replace="components/default_full :: scripts"></div>
 </body>
 </html>

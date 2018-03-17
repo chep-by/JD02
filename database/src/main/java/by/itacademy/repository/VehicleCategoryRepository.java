@@ -10,4 +10,6 @@ public interface VehicleCategoryRepository extends CrudRepository<VehicleCategor
 
     @Query(value = "select vc.categoryName from VehicleCategory vc")
     List<String> findAllCategoriesNames();
+
+    VehicleCategory findVehicleCategoryByCategoryName(String categoryName);
 }

@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -53,7 +52,7 @@ public class Reservation extends BaseEntity {
     private DamageBill damageBill;
 
     @Version
-    @Column (name = "version")
-    private int version;
+    @Column(name = "version")
+    private LocalDateTime version;
 
 }

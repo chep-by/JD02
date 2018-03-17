@@ -1,32 +1,29 @@
 <!DOCTYPE html>
-<html th:with="lang=${#locale.language}" th:lang="${lang}" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html th:with="lang=${#locale.language}" th:lang="${lang}" xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+    <th:block th:fragment="head">
+        <meta charset="UTF-8">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="shortcut icon" th:href="@{/resources/site.ico}">
+
+        <!-- Bootstrap core CSS -->
+        <link th:href="@{/resources/css/bootstrap.min.css}" rel="stylesheet">
+
+        <!-- Custom styles for this template -->
+        <link th:href="@{/resources/css/sticky-footer-navbar.css}" rel="stylesheet">
+        <link th:href="@{/resources/css/flag-icon.min.css}" rel="stylesheet">
+        <link th:href="@{/resources/css/custom.css}" rel="stylesheet">
+    </th:block>
 
     <title>Sticky Footer Navbar Template for Bootstrap</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="/resources/css/sticky-footer-navbar.css" rel="stylesheet">
-
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
 </head>
-
 <body>
-<!-- Fixed navbar -->
-<div class="navbar navbar-default navbar-fixed-top" role="navigation" th:fragment="header">
+<div class="navbar navbar-default navbar-fixed-top" role="navigation" th:fragment="nav">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -39,12 +36,12 @@
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li ><a th:he href="/select_cars" th:text="#{car.nav}">Каталог автомобилей</a></li>
+                <li ><a th:href="@{/select_cars}" th:text="#{car.nav}">Каталог автомобилей</a></li>
                 <li><a href="#about" th:text="#{condition.nav}">Условия проката</a></li>
                 <li><a href="#contact" th:text="#{feedback.nav}">Отзывы</a></li>
                 <li>
                     <div class="navbar-form">
-                        <a href="/signin" class="btn btn-warning" role="button" th:text="#{order.nav}">Make order</a>
+                        <a th:href="@{/signin}" class="btn btn-warning" role="button" th:text="#{order.nav}">Make order</a>
                     </div>
                 </li>
             </ul>
@@ -53,7 +50,7 @@
                 <a href="?locale=ru"><p class="flag-icon flag-icon-ru"></p></a>
             </div>
             <div sec:authorize="!isAuthenticated()" class="navbar-form navbar-right">
-            <a href="/signin" class="btn btn-success" role="button" th:text="#{sign.nav}">Sign in</a>
+                <a th:href="@{/signin}" class="btn btn-success" role="button" th:text="#{sign.nav}">Sign in</a>
             </div>
             <form th:action="@{/logout}" th:method="post" sec:authorize="isAuthenticated()" class="navbar-form navbar-right">
                 <button type="submit" class="btn btn-success" th:text="#{logout.nav}">Log out</button>
@@ -74,13 +71,22 @@
         </div><!--/.nav-collapse -->
     </div>
 </div>
+
+<div class="container">
+
+    <!--Input your's code here-->
+</div>
+
+<div id="footer" th:fragment="footer">
+    <div class="container">
+        <p class="text-muted" th:text="#{info.footer}">Информация о нашей компании, бла-бла.</p>
+    </div>
+</div>
+<th:block th:fragment="scripts">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script th:src="@{/resources/js/bootstrap.min.js}"></script>
+    <script th:src="@{/resources/js/jquery.chained.min.js}"></script>
+    <script th:src="@{/resources/js/chained.form.js}" ></script>
+</th:block>
 </body>
-
-
-
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="/resources/js/bootstrap.min.js"></script>
 </html>

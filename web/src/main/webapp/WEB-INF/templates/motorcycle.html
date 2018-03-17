@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html th:with="lang=${#locale.language}" th:lang="${lang}" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <th:block th:replace="components/head"></th:block>
+    <th:block th:replace="components/default_full :: head"></th:block>
 
     <title>Sticky Footer Navbar Template for Bootstrap</title>
-    <link href="/resources/css/custom.css" rel="stylesheet">
+    <link th:href="@{/resources/css/custom.css}" rel="stylesheet">
 
 </head>
 <body>
@@ -15,24 +15,24 @@
     <div class="row">
         <div class="col-md-4">
             <div class="preview-pic tab-content">
-                <div class="tab-pane active" id="pic-0"><img th:src="@{/resouces/images/vehicles/{id}/main.jpg(id=${motorcycle.id})}">
+                <div class="tab-pane active" id="pic-0"><img th:src="${mainImg}">
                 </div>
-                <th:block th:each="i: ${#numbers.sequence(1, imagesCount)}">
-                <div class="tab-pane" th:id="${'pic-'+ ${i}}"><img
-                        th:src="@{/resouces/images/vehicles/{id}/{img}(id=${motorcycle.id}, img = ${i + '.jpg'})}"/>
+                <th:block th:each="img, iter : ${otherImg}">
+                <div class="tab-pane" th:id="${'pic-'+ iter.current}"><img
+                        th:src="@{${img}}"/>
                 </div>
                 </th:block>
             </div>
             <ul class="preview-thumbnail nav nav-tabs">
                 <li class="active"><a data-target="#pic-0" data-toggle="tab">
                     <div class="thumbnail"><img
-                            th:src="@{/resouces/images/vehicles/{id}/main.jpg(id=${motorcycle.id})}"/>
+                            th:src="@{${mainImg}}"/>
                     </div>
                 </a></li>
-                <th:block th:each="i: ${#numbers.sequence(1, imagesCount)}">
-                <li><a  th:data-target="${'#pic-' + i}" data-toggle="tab">
+                <th:block th:each="img, iter : ${otherImg}">
+                <li><a  th:data-target="${'#pic-' + iter.current}" data-toggle="tab">
                     <div class="thumbnail"><img
-                            th:src="@{/resouces/images/vehicles/{id}/{img}(id=${motorcycle.id}, img = ${i + '.jpg'})}"/>
+                            th:src="@{${img}}"/>
                     </div>
                 </a></li>
                 </th:block>
@@ -55,6 +55,6 @@
 <!--Input your's code here-->
 
 <div th:replace="components/footer :: footer"></div>
-<div th:replace="components/scripts"></div>
+<div th:replace="components/default_full :: scripts"></div>
 </body>
 </html>

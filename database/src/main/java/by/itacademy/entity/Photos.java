@@ -14,8 +14,8 @@ import javax.persistence.Table;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table (name = "photos")
-public class Photos extends BaseEntity{
+@Table(name = "photos")
+public class Photos extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "vehicle_id")
     private Vehicle vehicle;

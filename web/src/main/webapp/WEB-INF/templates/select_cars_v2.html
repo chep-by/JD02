@@ -12,10 +12,10 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4">
-            <form role="form" th:action="@{/select_cars}" method="get" th:object="${carDto}">
+            <!--<form role="form" th:action="@{/select_cars}" method="get" th:object="${carDto}">-->
                 <div class="form-group">
                     <label for="manufacture">Марка</label>
-                    <select class="form-control" th:field="*{manufacture}" id="manufacture">
+                    <select class="form-control"  id="manufacture">
                         <option th:value="''" th:text="--"></option>
                         <option th:each="manufacture : ${allManufactureModelsMap}" th:value="${manufacture.key}"
                                 th:text="${manufacture.key}">
@@ -25,7 +25,7 @@
                 </div>
                 <div class="form-group">
                     <label for="model">Модель</label>
-                    <select class="form-control" th:field="*{model}" id="model">
+                    <select class="form-control"  id="model">
                         <option th:value="''" th:text="--"></option>
                         <th:block th:each="manufacture : ${allManufactureModelsMap}">
                             <option th:each="model : ${manufacture.value}" th:value="${model}" th:text="${model}"
@@ -36,7 +36,7 @@
                 </div>
                 <div class="form-group">
                     <label for="category">Категория</label>
-                    <select class="form-control" th:field="*{vehicleCategoryName}" id="category">
+                    <select class="form-control"  id="category">
                         <option th:value="''" th:text="--" th:selected="selected"></option>
                         <option th:each="category : ${allVehicleCategories}" th:value="${category}"
                                 th:text="${#strings.capitalize(category)}">luxury
@@ -51,7 +51,7 @@
                                 <div class="row" style="padding-right: 0px">
                                     <div class="col-xs-2 vcenter" style="padding-right: 0px"><label>C</label></div>
                                     <div class="col-xs-8 vcenter" style="padding: 0px">
-                                        <select class="form-control" th:field="*{yearMin}" id="yearMin">
+                                        <select class="form-control"  id="yearMin">
                                             <option th:each="i: ${#numbers.sequence(currentYear, currentYear - 40)}"
                                                     th:value="${i}"
                                                     th:text="${i}">1980
@@ -65,7 +65,7 @@
                                 <div class="row" style="padding-right: 0px"></div>
                                 <div class="col-xs-2 vcenter" style="padding-right: 0px"><label>по</label></div>
                                 <div class="col-xs-8 vcenter" style="padding: 0px">
-                                    <select class="form-control" th:field="*{yearMax}">
+                                    <select class="form-control"  id="yearMax">
                                         <option th:each="i: ${#numbers.sequence(currentYear, currentYear - 40)}"
                                                 th:value="${i}"
                                                 th:text="${i}">1980
@@ -82,7 +82,7 @@
                         <label for="pagination">Отображать на странице</label>
                     </div>
                     <div class="col-xs-3">
-                        <select class="form-control" th:field="*{perPage}" id="pagination" required>
+                        <select class="form-control" id="pagination" required>
                             <option th:value="2" th:text="2">2</option>
                             <option th:value="3" th:text="3">3</option>
                             <option th:value="5" th:text="5">5</option>
@@ -94,7 +94,7 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-xs-4">
-                        <input class="btn btn-default" type="submit" value="Отправить">
+                        <button class="btn btn-default" onclick="getCarListRequest()">Отправить</button>
                     </div>
                     <div class="col-xs-4">
                         <input class="btn btn-info" type="reset" value="Очистить">
@@ -110,55 +110,50 @@
                 <!--<option th:value="${category}" th:text="${#strings.capitalize(category)}" th:if="${category.equals('motorcycle')}">motorcycle</option>-->
                 <!--</th:block>-->
                 <!--</optgroup>-->
-            </form>
         </div>
-        <div class="col-md-8">
-            <div th:if="${#httpServletRequest.queryString != null}">
-                <p class="lead" th:if="${carsList.isEmpty()}" th:text="'Not fount'"></p>
-                <table class="table table-bordered" th:if="${!carsList.isEmpty()}">
-                    <tr>
-                        <td>Марка</td>
-                        <td>Модель</td>
-                        <td>Год</td>
-                        <td>Цена</td>
-                        <td>Мощность</td>
-                        <td></td>
-                        <td sec:authorize="hasAuthority('admin')">Изменить</td>
-                    </tr>
-                    <tr th:each="car : ${carsList}">
-                        <td th:text="${car.manufacture}">${car.manufacture}</td>
-                        <td th:text="${car.model}">${car.model}</td>
-                        <td th:text="${car.year}">${car.year}</td>
-                        <td th:text="${car.standardPrice}">${car.standardPrice}</td>
-                        <td th:text="${car.power}">${car.power}</td>
-                        <td><a th:href="@{/vehicle/{id}(id = ${car.id})}" class="btn btn-success" role="button">Подробнее »</a></td>
-                        <td sec:authorize="hasAuthority('admin')"><a th:href="@{/admin/changevehicle/{id}(id = ${car.id})}" class="btn btn-success" role="button">Изменить</a></td>
-                    </tr>
-                </table>
-                <div class="text-center">
-                    <th:block th:with="req = ${#httpServletRequest.queryString},
-                    currentPage = ${#httpServletRequest.getParameter('page')},
-        currentPageLenght = ${(#httpServletRequest.getParameter('page').length())},
-        reqsize = ${#httpServletRequest.queryString.length()},
-        queryPart1 = ${#httpServletRequest.queryString.split('page=')[0]},
-        queryPart2 = ${#httpServletRequest.queryString.split('page=')[1]}"
-                              th:if="${!carsList.isEmpty()}">
-                        <ul class="pagination">
-                            <!--<li th:if="${!currentPage.equals('1')}"><a th:href="@{${#httpServletRequest.requestURL}+'?'+${queryPart1}+'page='+${(#numbers.formatInteger(currentPage, currentPageLenght) - 1)}+${queryPart2.substring(currentPageLenght)}}">&laquo;</a></li>-->
-                            <li th:each="i: ${#numbers.sequence(1, countPages)}"><a
-                                    th:href="@{${#httpServletRequest.requestURL}+'?'+${queryPart1}+'page='+${i}+${queryPart2.substring(currentPageLenght)}}"
-                                    th:text="${i}">1</a></li>
-                            <!--<li th:if="${!currentPage.equals(countPages)}"><a th:href="@{${#httpServletRequest.requestURL}+'?'+${queryPart1}+'page='+${(#numbers.formatInteger(currentPage, currentPageLenght) + 1)}+${queryPart2.substring(currentPageLenght)}}">&raquo;</a></li>-->
-                        </ul>
-                    </th:block>
-                </div>
-            </div>
-        </div>
+        <div class="col-md-8" id="div-table">
+                <!--<p class="lead" th:if="${carsList.isEmpty()}" th:text="'Not fount'"></p>-->
+                <!--<table class="table table-bordered" id="table-cars" th:if="${!carsList.isEmpty()}">-->
+                    <!--<tr>-->
+                        <!--<td>Марка</td>-->
+                        <!--<td>Модель</td>-->
+                        <!--<td>Год</td>-->
+                        <!--<td>Цена</td>-->
+                        <!--<td>Мощность</td>-->
+                    <!--</tr>-->
+                    <!--<tr th:each="car : ${carsList}">-->
+                        <!--<td th:text="${car.manufacture}">${car.manufacture}</td>-->
+                        <!--<td th:text="${car.model}">${car.model}</td>-->
+                        <!--<td th:text="${car.year}">${car.year}</td>-->
+                        <!--<td th:text="${car.standardPrice}">${car.standardPrice}</td>-->
+                        <!--<td th:text="${car.power}">${car.power}</td>-->
+                    <!--</tr>-->
+                <!--</table>-->
+                <!--<div class="text-center">-->
+                    <!--<th:block th:with="req = ${#httpServletRequest.queryString},-->
+                    <!--currentPage = ${#httpServletRequest.getParameter('page')},-->
+        <!--currentPageLenght = ${(#httpServletRequest.getParameter('page').length())},-->
+        <!--reqsize = ${#httpServletRequest.queryString.length()},-->
+        <!--queryPart1 = ${#httpServletRequest.queryString.split('page=')[0]},-->
+        <!--queryPart2 = ${#httpServletRequest.queryString.split('page=')[1]}"-->
+                              <!--th:if="${!carsList.isEmpty()}">-->
+                        <!--<ul class="pagination">-->
+                            <!--&lt;!&ndash;<li th:if="${!currentPage.equals('1')}"><a th:href="@{${#httpServletRequest.requestURL}+'?'+${queryPart1}+'page='+${(#numbers.formatInteger(currentPage, currentPageLenght) - 1)}+${queryPart2.substring(currentPageLenght)}}">&laquo;</a></li>&ndash;&gt;-->
+                            <!--<li th:each="i: ${#numbers.sequence(1, countPages)}"><a-->
+                                    <!--th:href="@{${#httpServletRequest.requestURL}+'?'+${queryPart1}+'page='+${i}+${queryPart2.substring(currentPageLenght)}}"-->
+                                    <!--th:text="${i}">1</a></li>-->
+                            <!--&lt;!&ndash;<li th:if="${!currentPage.equals(countPages)}"><a th:href="@{${#httpServletRequest.requestURL}+'?'+${queryPart1}+'page='+${(#numbers.formatInteger(currentPage, currentPageLenght) + 1)}+${queryPart2.substring(currentPageLenght)}}">&raquo;</a></li>&ndash;&gt;-->
+                        <!--</ul>-->
+                    <!--</th:block>-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--</div>-->
+        <!--</div>-->
     </div>
     <!--Input your's code here-->
 </div>
-
+</div>
 <div th:replace="components/footer :: footer"></div>
 <div th:replace="components/default_full :: scripts"></div>
+<script th:src="@{/resources/js/select-cars.js}" ></script>
 </body>
 </html>

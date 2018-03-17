@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html th:with="lang=${#locale.language}" th:lang="${lang}" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:replace="components/default_full :: head"></th:block>
+
+    <title>Sticky Footer Navbar Template for Bootstrap</title>
+
+    <link th:href="@{/resources/css/admin-page.css}" rel="stylesheet">
+
+</head>
+<body>
+<div th:replace="components/admin_header :: admin_header"></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div th:replace="components/admin_header :: sidenav"></div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <p>Добавить:</p>
+            <label> <input type="radio" name="vehicle" value="moto"> Мотоцикл</label>
+            <label> <input type="radio" name="vehicle" value="car"> Машина</label>
+            <button onclick="showDiv()">Ок</button>
+            <div style="display: none" id="car">
+                <form id="addcar" role="form" th:action="@{/admin/addcar}" method="post" th:object="${car}">
+                    <div class="form-group">
+                        <label for="manufacture"><p>Марка</p></label>
+                        <input class="form-control" type="text" th:field="*{manufacture}" id="manufacture" required >
+                    </div>
+                    <div class="form-group">
+                        <label for="Model"><p>Модель</p></label>
+                        <input class="form-control" type="text" th:field="*{model}" id="Model" required >
+                    </div>
+                    <div class="form-group">
+                        <label for="year"><p>Год</p></label>
+                        <input class="form-control" type="number" th:field="*{year}" id="year" required >
+                    </div>
+                    <div class="form-group">
+                        <label for="standardprice"><p>Стандартная цена</p></label>
+                        <input class="form-control" type="number" th:field="*{standardPrice}" id="standardprice" required >
+                    </div>
+                    <div class="form-group">
+                        <label for="capacity"><p>Объем</p></label>
+                        <input class="form-control" type="number" th:field="*{cubicCapacity}" id="capacity" required >
+                    </div>
+                    <div class="form-group">
+                        <label for="power"><p>Мощность</p></label>
+                        <input class="form-control" type="number" th:field="*{power}" id="power" required >
+                    </div>
+                    <div class="form-group">
+                        <label for="category"><p>Категория</p></label>
+                        <select class="form-control" id="category" name="categoryName" required >
+                            <th:block th:each="type : ${categoryList}">
+                                <option th:text="${type}" th:value="${type}"></option>
+                            </th:block>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="fuel"><p>Топливо</p></label>
+                        <select class="form-control" id="fuel" th:field="*{fuelType}" required >
+                            <th:block th:each="type : ${fuelType}">
+                                <option th:text="${type}" th:value="${type}"></option>
+                            </th:block>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="gearbox"><p>Коробка</p></label>
+                        <select class="form-control" id="gearbox" th:field="*{gearbox}" required >
+                            <th:block th:each="type : ${gearbox}">
+                                <option th:text="${type}" th:value="${type}"></option>
+                            </th:block>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="transmission"><p>Привод</p></label>
+                        <select class="form-control" id="transmission" th:field="*{transmission}" required >
+                            <th:block th:each="type : ${transmission}">
+                                <option th:text="${type}" th:value="${type}"></option>
+                            </th:block>
+                        </select>
+                    </div>
+                    <div class="row" id="photo_div">
+                        <div class="col-xs-2 text-center">
+                                <input class="form-control" type="url" name="photoUrl" required>
+                                <input type="radio" name="main" value="0" required >
+                        </div>
+                        <div class="col-xs-2 text-center">
+                                <input class="form-control" type="url" name="photoUrl">
+                                <input type="radio" name="main" value="1">
+                        </div>
+                        <div class="col-xs-2 text-center">
+                                <input class="form-control" type="url" name="photoUrl">
+                                <input type="radio" name="main" value="2">
+                        </div>
+                        <div class="col-xs-2 text-center">
+                                <input class="form-control" type="url" name="photoUrl">
+                                <input type="radio" name="main" value="3">
+                        </div>
+                        <div class="col-xs-2 text-center">
+                                <input class="form-control" type="url" name="photoUrl">
+                                <input type="radio" name="main" value="4">
+                        </div>
+                        <!--<button id="add_photo">add photo</button>-->
+                        <!--<button onclick="">remove photo</button>-->
+                    </div>
+                    <input class="btn btn-default" type="submit" value="Отправить">
+
+                </form>
+                <button class="btn btn-default" style="margin-top: 10px" onclick="clearFormWithIdAddCar()"> Очистить</button>
+            </div>
+            <div style="display: none" id="moto">
+                <form id="addmoto" role="form" th:action="@{/admin/addmotorcycle}" method="post" th:object="${moto}">
+                    <div class="form-group">
+                        <label for="manufacture"><p>Марка</p></label>
+                        <input class="form-control" type="text" th:field="*{manufacture}" id="manufactureMoto" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Model"><p>Модель</p></label>
+                        <input class="form-control" type="text" th:field="*{model}" id="ModelMoto" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="year"><p>Год</p></label>
+                        <input class="form-control" type="number" th:field="*{year}" id="yearMoto" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="standardprice"><p>Стандартная цена</p></label>
+                        <input class="form-control" type="number" th:field="*{standardPrice}" id="standardpriceMoto" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="capacity"><p>Объем</p></label>
+                        <input class="form-control" type="number" th:field="*{cubicCapacity}" id="capacityMoto" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="power"><p>Мощность</p></label>
+                        <input class="form-control" type="number" th:field="*{power}" id="powerMoto" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" value="motorcycle" >
+                    </div>
+                    <div class="form-group">
+                        <label for="type"><p>Класс</p></label>
+                        <select class="form-control" id="type" th:field="*{motorcycleType}" required>
+                            <th:block th:each="type : ${motorcycleType}">
+                                <option th:text="${type}" th:value="${type}"></option>
+                            </th:block>
+                        </select>
+                    </div>
+                    <div class="row" id="photo_divMoto">
+                        <div class="col-xs-2 text-center">
+                            <input class="form-control" type="url" name="photoUrl" required>
+                            <input type="radio" name="main" value="0" required>
+                        </div>
+                        <div class="col-xs-2 text-center">
+                            <input class="form-control" type="url" name="photoUrl">
+                            <input type="radio" name="main" value="1">
+                        </div>
+                        <div class="col-xs-2 text-center">
+                            <input class="form-control" type="url" name="photoUrl">
+                            <input type="radio" name="main" value="2">
+                        </div>
+                        <div class="col-xs-2 text-center">
+                            <input class="form-control" type="url" name="photoUrl">
+                            <input type="radio" name="main" value="3">
+                        </div>
+                        <div class="col-xs-2 text-center">
+                            <input class="form-control" type="url" name="photoUrl">
+                            <input type="radio" name="main" value="4">
+                        </div>
+                        <!--<button id="add_photo">add photo</button>-->
+                        <!--<button onclick="">remove photo</button>-->
+                    </div>
+                    <input class="btn btn-default" type="submit" value="Отправить">
+
+                </form>
+                <button class="btn btn-default" style="margin-top: 10px" onclick="clearFormWithIdAddMoto()"> Очистить</button>
+            </div>
+            <!--Input text here-->
+        </div>
+    </div>
+
+</div>
+
+<!--<input type="text" id="member" name="member" value="">Number of members: (max. 10)<br/>-->
+<!--<a href="#" id="filldetails" onclick="addFields()">Fill Details</a>-->
+<!--<a href="#" id="filldetails4" onclick="delFields()">del Details</a>-->
+
+<!--<a href="#" id="send" onclick="sendFields()">send Details</a>-->
+<!--<div id="container"/>-->
+
+
+<div th:replace="components/default_full :: scripts"></div>
+<script th:src="@{/resources/js/admin.js}"></script>
+
+</body>
+</html>

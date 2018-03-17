@@ -13,6 +13,8 @@ public class HomePageController {
 
     private VehicleService vehicleService;
 
+    private static final int COUNT_OF_ROWS_ON_HOME_PAGE = 6;
+
     @Autowired
     public HomePageController(VehicleService vehicleService) {
         this.vehicleService = vehicleService;
@@ -20,7 +22,7 @@ public class HomePageController {
 
     @ModelAttribute("vehicles")
     private List<Object[]> sixVehicles() {
-        return vehicleService.getModelManufactureYearStandardCostMainImgRandomVehicles(6);
+        return vehicleService.getModelManufactureYearStandardCostMainImgRandomVehicles(COUNT_OF_ROWS_ON_HOME_PAGE);
     }
 
     @GetMapping("/")

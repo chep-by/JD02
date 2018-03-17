@@ -11,7 +11,7 @@ public class VehicleRepositoryTest extends BaseRepositoryTest {
     VehicleRepository vehicleRepository;
 
     @Test
-    public void simpleTest(){
+    public void simpleTest() {
         Iterable<Vehicle> all = vehicleRepository.findAll();
         all.forEach(System.out::println);
         System.out.println(all.iterator().next().getCubicCapacity());
@@ -21,5 +21,7 @@ public class VehicleRepositoryTest extends BaseRepositoryTest {
     public void getModelManufactureYearStandardCostRandomSixVehiclesTest() {
 
         System.out.println(vehicleRepository.getModelManufactureYearStandardCostMainImgRandomVehicles(6));
+
+
     }
 }

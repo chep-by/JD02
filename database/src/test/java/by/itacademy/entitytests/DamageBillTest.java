@@ -16,7 +16,7 @@ public class DamageBillTest extends BaseEntityTest {
 
         DamageBill damageBillFind = damageBillRepository.findOne(1L);
 
-        Assert.assertEquals(damageBillFind.getCommend(), "Damaged door");
+        Assert.assertEquals(damageBillFind.getCommend(), "Поврежденная дверь");
     }
 
 }

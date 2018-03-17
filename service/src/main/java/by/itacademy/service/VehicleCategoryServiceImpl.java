@@ -1,5 +1,6 @@
 package by.itacademy.service;
 
+import by.itacademy.entity.VehicleCategory;
 import by.itacademy.repository.VehicleCategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,10 @@ public class VehicleCategoryServiceImpl implements VehicleCategoryService {
         return vehicleCategoryRepository.findAllCategoriesNames();
     }
 
-
+    @Override
+    public VehicleCategory findCategoryByCategoryName(String categoryName) {
+        return vehicleCategoryRepository.findVehicleCategoryByCategoryName(categoryName);
+    }
 
 
 }

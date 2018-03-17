@@ -3,7 +3,7 @@ create table chats (id bigint not null auto_increment, primary key (id));
 create table cost_strategies (id bigint not null auto_increment, strategy varchar(80) not null, primary key (id));
 create table reservation_statuses (id bigint not null auto_increment, status_name varchar(30) not null unique, primary key (id));
 create table roles (id bigint not null auto_increment, role_name varchar(30) not null unique, primary key (id));
-create table users (id bigint not null auto_increment, login varchar(40) not null unique, password varchar(40) not null, primary key (id));
+create table users (id bigint not null auto_increment, login varchar(40) not null unique, password varchar(60) not null, primary key (id));
 create table chat_lines (id bigint not null auto_increment, line_text varchar(255), date_time datetime, chat_id bigint not null, user_id bigint not null, primary key (id), foreign key (chat_id) references chats (id), foreign key (user_id) references users (id));
 create table vehicle_categories (id bigint not null auto_increment, category_name varchar(30) not null unique, category_cost_strategy_id bigint not null unique, primary key (id), foreign key (category_cost_strategy_id) references cost_strategies (id));
 create table users_roles (user_id bigint not null, role_id bigint not null, primary key (user_id, role_id), foreign key (role_id) references roles (id), foreign key (user_id) references users (id));
@@ -14,7 +14,7 @@ create table vehicles (id bigint not null auto_increment, cubic_capacity int not
 create table motorcycles (type varchar(14) not null, vehicle_id bigint not null, primary key (vehicle_id), foreign key (vehicle_id) references vehicles (id));
 create table cars (fuel_type varchar(12) not null, gearbox varchar(15) not null, transmission varchar(12) not null, vehicle_id bigint not null, primary key (vehicle_id), foreign key (vehicle_id) references vehicles (id));
 create table photos (id bigint not null auto_increment, vehicle_id bigint not null, url VARCHAR(255), primary key (id), foreign key (vehicle_id) references vehicles(id));
-create table reservations (id bigint not null auto_increment, commend varchar(255), datetime_return datetime, datetime_take datetime, is_payed bit not null, bill_id bigint not null unique, status_id bigint not null, user_id bigint not null, vehicle_id bigint not null, version int, primary key (id), foreign key (bill_id) references bills (id), foreign key (status_id) references reservation_statuses (id), foreign key (user_id) references users (id), foreign key (vehicle_id) references vehicles (id));
+create table reservations (id bigint not null auto_increment, commend varchar(255), datetime_return datetime, datetime_take datetime, is_payed bit not null, bill_id bigint not null unique, status_id bigint not null, user_id bigint not null, vehicle_id bigint not null, version DATETIME, primary key (id), foreign key (bill_id) references bills (id), foreign key (status_id) references reservation_statuses (id), foreign key (user_id) references users (id), foreign key (vehicle_id) references vehicles (id));
 create table damage_bills (id bigint not null auto_increment, commend varchar(255) not null, cost int not null, reservation_id bigint not null unique, primary key (id), foreign key (reservation_id) references reservations (id));
 
 /* test table*/
@@ -24,10 +24,10 @@ INSERT INTO bills (final_cost, pay_datetime) VALUES (120, '2018-02-12 13:22:00')
 INSERT INTO chats VALUES (1);
 INSERT INTO chats VALUES (2);
 
-INSERT INTO cost_strategies (strategy) VALUES ('1-100__3-95__5_90');
-INSERT INTO cost_strategies (strategy) VALUES ('1-100__3-97__5_95');
-INSERT INTO cost_strategies (strategy) VALUES ('1-100__3-90__5_85');
-INSERT INTO cost_strategies (strategy) VALUES ('1-100__3-90__5_85');
+INSERT INTO cost_strategies (strategy) VALUES ('1-100__3-95__5-90');
+INSERT INTO cost_strategies (strategy) VALUES ('1-100__3-97__5-95');
+INSERT INTO cost_strategies (strategy) VALUES ('1-100__3-90__5-85');
+INSERT INTO cost_strategies (strategy) VALUES ('1-100__3-90__5-85');
 
 INSERT INTO reservation_statuses (status_name) VALUES ('in rent');
 INSERT INTO reservation_statuses (status_name) VALUES ('wait for rent');
@@ -43,11 +43,11 @@ INSERT INTO users (login, password) VALUES ('crip','12ada');
 INSERT INTO users (login, password) VALUES ('lex','asdasf');
 INSERT INTO users (login, password) VALUES ('mir','1234asd124');
 
-INSERT INTO chat_lines (line_text, date_time, chat_id, user_id) VALUES ('Hi! What about BMW?', '2018-02-13 13:22:00', 1, 2);
-INSERT INTO chat_lines (line_text, date_time, chat_id, user_id) VALUES ('Ye, it here', '2018-02-13 13:25:00', 1, 1);
-INSERT INTO chat_lines (line_text, date_time, chat_id, user_id) VALUES ('Nice!', '2018-02-13 13:29:00', 1, 2);
-INSERT INTO chat_lines (line_text, date_time, chat_id, user_id) VALUES ('Where i can rent car?', '2018-02-18 13:22:00', 2, 3);
-INSERT INTO chat_lines (line_text, date_time, chat_id, user_id) VALUES ('Here - link', '2018-02-18 13:28:00', 2, 1);
+INSERT INTO chat_lines (line_text, date_time, chat_id, user_id) VALUES ('Привет, БМВ в наличии?', '2018-02-13 13:22:00', 1, 2);
+INSERT INTO chat_lines (line_text, date_time, chat_id, user_id) VALUES ('Да', '2018-02-13 13:25:00', 1, 1);
+INSERT INTO chat_lines (line_text, date_time, chat_id, user_id) VALUES ('Отлично!', '2018-02-13 13:29:00', 1, 2);
+INSERT INTO chat_lines (line_text, date_time, chat_id, user_id) VALUES ('Как арендовать авто', '2018-02-18 13:22:00', 2, 3);
+INSERT INTO chat_lines (line_text, date_time, chat_id, user_id) VALUES ('ссылка тут', '2018-02-18 13:28:00', 2, 1);
 
 INSERT INTO vehicle_categories (category_name, category_cost_strategy_id) VALUES ('business', 1);
 INSERT INTO vehicle_categories (category_name, category_cost_strategy_id) VALUES ('luxury', 2);
@@ -160,4 +160,4 @@ VALUES ('2017-04-12 13:00:00', '2017-04-16 13:00:00', TRUE ,1, 3, 3, 4);
 INSERT INTO reservations (datetime_return, datetime_take, is_payed, bill_id, status_id, user_id, vehicle_id)
 VALUES ('2017-04-15 13:00:00', '2017-04-19 13:00:00', TRUE ,2, 1, 2, 2);
 
-insert into damage_bills (commend, cost, reservation_id) values ('Damaged door', 50, 1);
+insert into damage_bills (commend, cost, reservation_id) values ('Поврежденная дверь', 50, 1);

@@ -10,16 +10,11 @@
 <div th:replace="components/header :: header"></div>
 
 <div class="container">
-
+    <p>Here admin page</p>
     <!--Input your's code here-->
 </div>
 
-<div id="footer" th:fragment="footer">
-    <div class="container">
-        <p class="text-muted" th:text="#{info.footer}">Информация о нашей компании, бла-бла.</p>
-    </div>
-</div>
+<div th:replace="components/footer :: footer"></div>
 <div th:replace="components/scripts"></div>
 </body>
 </html>
-

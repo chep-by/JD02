@@ -48,7 +48,7 @@ public class CarServiceImpl implements CarService {
     @Cacheable(cacheNames = "request")
     @Override
     public int getCountOfPages(CarDto carDto) {
-        return  (int) Math.ceil((double) getCount(carDto) / (double) carDto.getPerPage());
+        return (int) Math.ceil((double) getCount(carDto) / (double) carDto.getPerPage());
     }
 
     @Override
