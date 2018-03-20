@@ -47,24 +47,6 @@
       <version>${hibernateVersion}</version>
     </dependency>
 
-    <!--<dependency>-->
-      <!--<groupId>org.springframework</groupId>-->
-      <!--<artifactId>spring-core</artifactId>-->
-      <!--<version>${springVersion}</version>-->
-    <!--</dependency>-->
-
-    <!--<dependency>-->
-      <!--<groupId>org.springframework</groupId>-->
-      <!--<artifactId>spring-context</artifactId>-->
-      <!--<version>${springVersion}</version>-->
-    <!--</dependency>-->
-
-    <!--<dependency>-->
-      <!--<groupId>org.springframework</groupId>-->
-      <!--<artifactId>spring-test</artifactId>-->
-      <!--<version>${springVersion}</version>-->
-    <!--</dependency>-->
-
     <dependency>
       <groupId>org.springframework.data</groupId>
       <artifactId>spring-data-jpa</artifactId>
@@ -87,7 +69,6 @@
         <configuration>
           <source>1.8</source>
           <target>1.8</target>
-          <!--<compilerArgument>-proc:none</compilerArgument>-->
           <annotationProcessors>
             <annotationProcessor>lombok.launch.AnnotationProcessorHider$AnnotationProcessor</annotationProcessor>
           </annotationProcessors>

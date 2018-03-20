@@ -10,8 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Version;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -20,11 +19,11 @@ import java.time.LocalDateTime;
 @Table(name = "reservations")
 public class Reservation extends BaseEntity {
 
-    @Column(name = "datetime_take")
-    private LocalDateTime dateTimeTake;
+    @Column(name = "datetake")
+    private LocalDate dateTake;
 
-    @Column(name = "datetime_return")
-    private LocalDateTime dateTimeReturn;
+    @Column(name = "datereturn")
+    private LocalDate dateReturn;
 
     @ManyToOne
     @JoinColumn(name = "vehicle_id", nullable = false)
@@ -51,8 +50,7 @@ public class Reservation extends BaseEntity {
     @OneToOne(mappedBy = "reservation")
     private DamageBill damageBill;
 
-    @Version
     @Column(name = "version")
-    private LocalDateTime version;
+    private Integer version;
 
 }

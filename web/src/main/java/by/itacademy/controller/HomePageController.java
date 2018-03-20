@@ -29,4 +29,9 @@ public class HomePageController {
     public String homepage() {
         return "home";
     }
+
+    @GetMapping("/conditions")
+    public String conditionsPage() {
+        return "conditions";
+    }
 }

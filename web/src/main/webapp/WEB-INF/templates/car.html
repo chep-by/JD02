@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html th:with="lang=${#locale.language}" th:lang="${lang}" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html th:with="lang=${#locale.language}" th:lang="${lang}" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <th:block th:replace="components/default_full :: head"></th:block>
-
-    <title>Sticky Footer Navbar Template for Bootstrap</title>
+    <link th:href="@{/resources/css/bootstrap-datetimepicker.min.css}" rel="stylesheet">
+    <title>Авто <th:block th:text="${car.manufacture + ' ' + car.model}"></th:block></title>
 
 </head>
 <body>
@@ -63,22 +64,87 @@
                 </tr>
             </table>
             <div>
-                <table class="table table-bordered">
+                <table class="table table-bordered" id="costsTable">
                     <tr>
-                        <td th:text="#{Term_of_lease}">Срок аренды</td>
-                        <td th:text="#{Cost_per_day}"> Стоимость за день</td>
+                        <th th:text="#{Term_of_lease}">Срок аренды</th>
+                        <th th:text="#{Cost_per_day}"> Стоимость за день</th>
                     </tr>
-                    <th:block th:each="pair : ${mapCostStrategy}">
+                    <th:block th:each="pair : ${CostStrategy}">
                         <tr th:unless="${pairStat.last}">
-                            <td th:text="${pair.key}"></td>
-                            <td th:text="${pair.value}"></td>
+                            <td th:text="${pair.startDays + ' - ' + pair.endDays}"></td>
+                            <td th:text="${pair.cost*car.standardPrice/100}"></td>
                         </tr>
                         <tr th:if="${pairStat.last}">
-                            <td th:text="${pair.key} + ' ' + #{more}"></td>
-                            <td th:text="${pair.value}"></td>
+                            <td th:text="${pair.startDays} + ' ' + #{more}"></td>
+                            <td th:text="${pair.cost*car.standardPrice/100}"></td>
                         </tr>
                     </th:block>
                 </table>
+            </div>
+            <div sec:authorize="isAnonymous()">
+                <p>
+                    <button class="btn btn-warning" data-toggle="modal"  data-target="#smallModal" th:text="#{order.nav}">Заказать</button>
+                </p>
+                <div class="modal fade" id="smallModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <h3 th:text="#{need.to.login}">Вам нужно зайти в аккаунт</h3>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal" th:text="#{close}">Закрыть</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div sec:authorize="isAuthenticated()">
+                <p>
+                    <button class="btn btn-warning" data-toggle="collapse" data-target="#order" th:text="#{order.nav}">Заказать</button>
+                </p>
+                <div id="order" class="collapse">
+                    <form th:action="@{/reservation}" th:method="post" th:object="${reservationData}">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <label for="dateTakepicker3" th:text="#{from}">C</label>
+                                <div class="input-group" id="dateTakepicker3">
+                                    <input type="text" th:field="*{dateTake}" class="form-control"/>
+                                    <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-calendar"></i>
+                    </span>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <label for="dateReturnpicker3" th:text="#{to}">По</label>
+                                <div class="input-group" id="dateReturnpicker3">
+                                    <input type="text" th:field="*{dateReturn}" class="form-control"/>
+                                    <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-calendar"></i>
+                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <!--<div class="form-group">-->
+                        <!--<input type="date" class="form-control" th:field="*{dateTake}">-->
+                        <!--</div>-->
+                        <!--<div class="form-group">-->
+                        <!--<input type="date" class="form-control" th:field="*{dateReturn}">-->
+                        <!--</div>-->
+                        <div class="form-group">
+                            <input th:type="hidden" id="vehicleId" name="vehicleId" th:value="${id}">
+                        </div>
+                        <div class="form-group">
+                            <label for="commend" th:text="#{extra.commend}">Что еще нам бы следовало знать о вашем заказе?</label>
+                            <textarea id="commend" class="form-control" rows="3" th:field="*{commend}"></textarea>
+                        </div>
+                        <input class="btn" type="submit" th:value="#{send}">
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -86,5 +152,9 @@
 
 <div th:replace="components/default_full :: footer"></div>
 <div th:replace="components/default_full :: scripts"></div>
+<script sec:authorize="isAuthenticated()" th:src="@{/resources/js/moment.js}"></script>
+<script sec:authorize="isAuthenticated()" th:src="@{/resources/js/moment-range.js}"></script>
+<script sec:authorize="isAuthenticated()" th:src="@{/resources/js/bootstrap-datetimepicker.js}"></script>
+<script sec:authorize="isAuthenticated()" th:src="@{/resources/js/reservation.js}"></script>
 </body>
 </html>

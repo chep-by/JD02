@@ -3,7 +3,7 @@
 <head>
     <th:block th:replace="components/head"></th:block>
 
-    <title>Sticky Footer Navbar Template for Bootstrap</title>
+    <title>Зарегистрироваться</title>
     <link th:href="@{/resources/css/signin.css}" rel="stylesheet">
 </head>
 <body>
@@ -19,8 +19,8 @@
         <!--</label>-->
         <button class="btn btn-lg btn-primary btn-block" type="submit" th:text="#{sign.signUp}">Sign up</button>
     </form>
-    <div th:class="text-center" th:if="${#request.queryString != null && #request.queryString.contains('error')}">
-        <p class="lead text-danger" th:text="#{incorrectdata.sign}">Имя пользователя или пароль введены неверно</p>
+    <div th:class="text-center" th:if="${userExist != null}">
+        <p class="lead text-danger" th:text="${userExist}"></p>
 
     </div>
 </div>

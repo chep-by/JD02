@@ -46,7 +46,8 @@ public class AuthenticationAndRegistrationController {
             userService.newUserRegistration(user);
         } catch (UserExistException e) {
             model.addAttribute("userExist", e.getMessage());
+            return "registration";
         }
-        return "registration";
+        return "signin";
     }
 }

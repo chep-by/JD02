@@ -3,7 +3,7 @@
 <head>
     <th:block th:replace="components/default_full :: head"></th:block>
 
-    <title>Sticky Footer Navbar Template for Bootstrap</title>
+    <title>Добавить ТС</title>
 
     <link th:href="@{/resources/css/admin-page.css}" rel="stylesheet">
 
@@ -77,7 +77,7 @@
                             </th:block>
                         </select>
                     </div>
-                    <div class="row" id="photo_div">
+                    <div class="row" id="photo_divCar">
                         <div class="col-xs-2 text-center">
                                 <input class="form-control" type="url" name="photoUrl" required>
                                 <input type="radio" name="main" value="0" required >
@@ -98,13 +98,13 @@
                                 <input class="form-control" type="url" name="photoUrl">
                                 <input type="radio" name="main" value="4">
                         </div>
-                        <!--<button id="add_photo">add photo</button>-->
-                        <!--<button onclick="">remove photo</button>-->
                     </div>
                     <input class="btn btn-default" type="submit" value="Отправить">
-
+                    <button type="button" class="btn btn-default"  onclick="clearFormWithIdAddCar()"> Очистить</button>
+                    <button type="button" class="btn btn-default" onclick="addFieldForPhotoAddCarPage()"> Add photo field</button>
+                    <button type="button" class="btn btn-default" onclick="removeFieldForPhotoAddCarPage()"> Remove last photo field</button>
                 </form>
-                <button class="btn btn-default" style="margin-top: 10px" onclick="clearFormWithIdAddCar()"> Очистить</button>
+
             </div>
             <div style="display: none" id="moto">
                 <form id="addmoto" role="form" th:action="@{/admin/addmotorcycle}" method="post" th:object="${moto}">
@@ -164,15 +164,13 @@
                             <input class="form-control" type="url" name="photoUrl">
                             <input type="radio" name="main" value="4">
                         </div>
-                        <!--<button id="add_photo">add photo</button>-->
-                        <!--<button onclick="">remove photo</button>-->
                     </div>
                     <input class="btn btn-default" type="submit" value="Отправить">
-
+                    <button type="button" class="btn btn-default" onclick="clearFormWithIdAddMoto()"> Очистить</button>
+                    <button type="button" class="btn btn-default" onclick="addFieldForPhotoAddMotoPage()"> Add photo field</button>
+                    <button type="button" class="btn btn-default" onclick="removeFieldForPhotoAddMotoPage()"> Remove last photo field</button>
                 </form>
-                <button class="btn btn-default" style="margin-top: 10px" onclick="clearFormWithIdAddMoto()"> Очистить</button>
             </div>
-            <!--Input text here-->
         </div>
     </div>
 

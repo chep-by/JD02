@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html th:with="lang=${#locale.language}" th:lang="${lang}" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:replace="components/default_full :: head"></th:block>
+
+    <title>Заявки</title>
+
+    <link th:href="@{/resources/css/admin-page.css}" rel="stylesheet">
+
+</head>
+<body>
+<div th:replace="components/admin_header :: admin_header"></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div th:replace="components/admin_header :: sidenav"></div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <table class="table table-bordered">
+                <tr>
+                    <td>Пользователь</td>
+                    <td>Дата начала</td>
+                    <td>Дата окончания</td>
+                    <td>Дата до которой нужно оплатить</td>
+                    <td>Сумма</td>
+                    <td>Оплачена</td>
+                    <td>Текущий статус</td>
+                    <td>ТС</td>
+                    <td>Комментарий</td>
+                    <td>Сумма и комментарий (если были)</td>
+                    <td>Изменить</td>
+                </tr>
+                <th:block th:each="reservation : ${allReservationsList}">
+                    <tr>
+                        <td th:text="${reservation.user.login}">Пользователь</td>
+                        <td th:text="${reservation.dateTake}">Дата начала</td>
+                        <td th:text="${reservation.dateReturn}">Дата окончания</td>
+                        <td th:text="${#temporals.format(reservation.bill.payDateTime, 'dd-MM-yyyy HH:mm')}">Дата до которой нужно оплатить</td>
+                        <td th:text="${reservation.bill.finalCost}">Сумма</td>
+                        <td th:text="${reservation.payed}">Оплачена</td>
+                        <td th:text="${reservation.reservationStatus.statusName}">Текущий статус</td>
+                        <td><a class="btn btn-info" th:href="@{/vehicle/{id}(id=${reservation.vehicle.id})}" th:text="${reservation.vehicle.id}"></a></td>
+                        <td th:text="${reservation.commend}">Комментарий</td>
+                        <td>
+                            <div th:if="${reservation.damageBill != null}">
+                                <p th:text="${reservation.damageBill.cost}"></p>
+                                <p th:text="${reservation.damageBill.commend}"></p>
+                            </div>
+                            <a class="btn btn-info" th:href="@{/admin/damagebill/{id}(id=${reservation.id})}" th:if="${reservation.damageBill == null}">Создать</a>
+                        </td>
+                        <td><a class="btn btn-info" th:href="@{/admin/reservations/{id}(id=${reservation.id})}">Изменить</a></td>
+                    </tr>
+                </th:block>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div th:replace="components/default_full :: scripts"></div>
+</body>
+</html>

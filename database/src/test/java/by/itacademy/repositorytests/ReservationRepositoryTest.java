@@ -15,17 +15,11 @@ public class ReservationRepositoryTest extends BaseRepositoryTest {
 
     @Test
     public void findAllByUserLoginTest() {
-        List<Reservation> allByReservationStatusStatusName = reservationRepository.findAllByReservationStatusStatusName("in rent");
+        List<Reservation> allByReservationStatusStatusName = reservationRepository.findAllByReservationStatusStatusName("order created");
 
         Assert.assertEquals(allByReservationStatusStatusName.iterator().next().isPayed(), true);
     }
 
-    @Test
-    public void findAllByReservationStatusStatusNameTest() {
-        List<Reservation> allByUserLogin = reservationRepository.findAllByUserLogin("max");
-
-        Assert.assertEquals(allByUserLogin.iterator().next().getUser().getLogin(), "max");
-    }
 
     @Test
     public void findAllNotPayedTest() {
@@ -33,6 +27,12 @@ public class ReservationRepositoryTest extends BaseRepositoryTest {
 
         Assert.assertTrue(allNotPayed.isEmpty());
 
+    }
+
+    @Test
+    public void test() {
+        List<Object[]> blockedDatesByVehicleId = reservationRepository.findBlockedDatesByVehicleId(2L);
+        blockedDatesByVehicleId.forEach(object -> System.out.println(object[0] + " " + object[1]));
     }
 }
 

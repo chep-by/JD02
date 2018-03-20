@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html th:with="lang=${#locale.language}" th:lang="${lang}" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:replace="components/default_full :: head"></th:block>
+
+    <title>Добавить пореждения по заявке</title>
+
+    <link th:href="@{/resources/css/admin-page.css}" rel="stylesheet">
+
+</head>
+<body>
+<div th:replace="components/admin_header :: admin_header"></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div th:replace="components/admin_header :: sidenav"></div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <form id="addcar" role="form" th:action="@{/admin/createdamagebill}" method="post" th:object="${damagebill}">
+                <input type="hidden" name="reservationId" th:value="${reservationid}">
+                <div class="form-group">
+                    <label th:for="*{cost}">Стоимость</label>
+                    <input class="form-control" type="number" th:field="*{cost}" id="manufacture" required>
+                </div>
+                <div class="form-group">
+                    <label th:for="*{commend}">Комментарий</label>
+                    <textarea id="commend" class="form-control" rows="3" th:field="*{commend}" required></textarea>
+                </div>
+                <input class="btn btn-default" type="submit" value="Сохранить">
+            </form>
+        </div>
+    </div>
+</div>
+
+<div th:replace="components/default_full :: scripts"></div>
+</body>
+</html>

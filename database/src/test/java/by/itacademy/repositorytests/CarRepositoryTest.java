@@ -17,28 +17,28 @@ public class CarRepositoryTest extends BaseRepositoryTest{
     @Test
     public void checkCountTest() {
         CarDto carDto = new CarDto();
-        carDto.setManufacture("BMW");
-        carDto.setModel("645");
+        carDto.setManufacture("Ford");
+        carDto.setModel("Mondeo");
         carDto.setYearMin(1980);
         carDto.setYearMax(2018);
         Long aLong = carRepository.checkCount(carDto);
 
-        Assert.assertTrue(aLong == 7L);
+        Assert.assertTrue(aLong == 1L);
 
     }
 
     @Test
     public void findByParamsTest() {
         CarDto carDto = new CarDto();
-        carDto.setManufacture("BMW");
-        carDto.setModel("645");
+        carDto.setManufacture("Ford");
+        carDto.setModel("Mondeo");
         carDto.setYearMin(1980);
         carDto.setYearMax(2018);
         carDto.setPage(1);
         carDto.setPerPage(3);
         List<Car> carList = carRepository.findByParams(carDto);
 
-        Assert.assertEquals(carList.size(), 3);
+        Assert.assertEquals(carList.size(), 1);
 
     }
 
@@ -46,13 +46,13 @@ public class CarRepositoryTest extends BaseRepositoryTest{
     public void findAllManufacturesTest() {
         List<String> allManufactures = carRepository.findAllManufactures();
 
-        Assert.assertEquals(allManufactures.size(), 2);
+        Assert.assertEquals(allManufactures.size(), 5);
     }
 
     @Test
     public void findAllModelsByManufacture() {
         List<String> bmw = carRepository.findAllModelsByManufacture("BMW");
 
-        Assert.assertEquals(bmw.size(), 3);
+        Assert.assertEquals(bmw.size(), 5);
     }
 }

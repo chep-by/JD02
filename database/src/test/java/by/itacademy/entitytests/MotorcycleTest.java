@@ -14,7 +14,7 @@ public class MotorcycleTest extends BaseEntityTest {
 
     @Test
     public void saveTest() {
-        Motorcycle motorcycleFind = motorcycleRepository.findOne(13L);
+        Motorcycle motorcycleFind = motorcycleRepository.findOne(2L);
 
         Assert.assertTrue(motorcycleFind.getMotorcycleType() == MotorcycleType.SPORT);
     }

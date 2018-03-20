@@ -2,12 +2,19 @@ package by.itacademy.controller;
 
 
 import by.itacademy.entity.Car;
+import by.itacademy.entity.DamageBill;
 import by.itacademy.entity.Motorcycle;
+import by.itacademy.entity.Reservation;
+import by.itacademy.entity.ReservationStatus;
 import by.itacademy.entity.Vehicle;
 import by.itacademy.enums.FuelType;
 import by.itacademy.enums.Gearbox;
 import by.itacademy.enums.MotorcycleType;
 import by.itacademy.enums.Transmission;
+import by.itacademy.exceptions.ResourceNotFoundException;
+import by.itacademy.service.DamageBillService;
+import by.itacademy.service.ReservationService;
+import by.itacademy.service.ReservationStatusService;
 import by.itacademy.service.VehicleCategoryService;
 import by.itacademy.service.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +26,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -28,13 +34,20 @@ import java.util.stream.Stream;
 @RequestMapping("/admin")
 public class AdminPagesController {
 
+    private Reservation changeableReservation;
     private VehicleCategoryService vehicleCategoryService;
     private VehicleService vehicleService;
+    private ReservationService reservationService;
+    private ReservationStatusService reservationStatusService;
+    private final DamageBillService damageBillService;
 
     @Autowired
-    public AdminPagesController(VehicleCategoryService vehicleCategoryService, VehicleService vehicleService) {
+    public AdminPagesController(VehicleCategoryService vehicleCategoryService, VehicleService vehicleService, ReservationService reservationService, ReservationStatusService reservationStatusService, DamageBillService damageBillService) {
         this.vehicleCategoryService = vehicleCategoryService;
         this.vehicleService = vehicleService;
+        this.reservationService = reservationService;
+        this.reservationStatusService = reservationStatusService;
+        this.damageBillService = damageBillService;
     }
 
     @ModelAttribute("car")
@@ -80,17 +93,22 @@ public class AdminPagesController {
         return vehicleCategoryService.getAllVehicleCategories();
     }
 
+    @GetMapping("")
+    public String adminPage() {
+        return "admin";
+    }
+
     @GetMapping("/addvehicle")
     public String addVehicle() {
         return "addvehicle";
     }
 
     @GetMapping("/changevehicle/{id}")
-    public String changeVehicle(@PathVariable Long id, Model model) {
+    public String changeVehicleById(@PathVariable Long id, Model model) {
         Vehicle vehicle = vehicleService.findOne(id);
         String vehicleType;
         if (vehicle == null) {
-            return "error";
+            throw new ResourceNotFoundException();
         } else {
             if (vehicle instanceof Car) {
                 Car car = (Car) vehicle;
@@ -109,45 +127,24 @@ public class AdminPagesController {
     @PostMapping("/addcar")
     public String addCarForm(Car car, String[] photoUrl, int main, String categoryName) {
         vehicleService.prepareAndSaveOrUpdateVehicle(car, photoUrl, main, categoryName);
-        System.out.println(main);
-        System.out.println(car);
-        System.out.println(photoUrl.length);
-        System.out.println(categoryName);
-        Arrays.asList(photoUrl).forEach(System.out::print);
         return "success";
     }
 
     @PostMapping("/addmotorcycle")
     public String addMotorcycleForm(Motorcycle motorcycle, String[] photoUrl, int main, String categoryName) {
         vehicleService.prepareAndSaveOrUpdateVehicle(motorcycle, photoUrl, main, categoryName);
-        System.out.println(main);
-        System.out.println(motorcycle);
-        System.out.println(photoUrl.length);
-        System.out.println(categoryName);
-        Arrays.asList(photoUrl).forEach(System.out::print);
         return "success";
     }
 
     @PostMapping("/changecar")
     public String changeCarForm(Car car, String[] photoUrl, int main, String categoryName) {
         vehicleService.prepareAndSaveOrUpdateVehicle(car, photoUrl, main, categoryName);
-        System.out.println(car.getId());
-        System.out.println(main);
-        System.out.println(car);
-        System.out.println(photoUrl.length);
-        System.out.println(categoryName);
-        Arrays.asList(photoUrl).forEach(System.out::print);
         return "success";
     }
 
     @PostMapping("/changemotorcicle")
     public String changeMotorcycleForm(Motorcycle motorcycle, String[] photoUrl, int main, String categoryName) {
         vehicleService.prepareAndSaveOrUpdateVehicle(motorcycle, photoUrl, main, categoryName);
-        System.out.println(main);
-        System.out.println(motorcycle);
-        System.out.println(photoUrl.length);
-        System.out.println(categoryName);
-        Arrays.asList(photoUrl).forEach(System.out::print);
         return "success";
     }
 
@@ -157,6 +154,45 @@ public class AdminPagesController {
         return "success";
     }
 
+
+    @GetMapping("/reservations")
+    public String viewReservations(Model model) {
+        model.addAttribute("allReservationsList", reservationService.findAll());
+        return "reservationadminview";
+    }
+
+    @GetMapping("/reservations/{id}")
+    public String viewReservationById(@PathVariable Long id, Model model) {
+        Reservation reservation = reservationService.findOne(id);
+        if (reservation == null) {
+            throw new ResourceNotFoundException();
+        } else {
+            model.addAttribute("allReservationStatuses", reservationStatusService.findAll());
+            model.addAttribute("reservation", reservation);
+        }
+        return "reservationadminviewone";
+    }
+
+    @PostMapping("/changereservation")
+    public String changeReservation(Reservation reservation, String status) {
+        ReservationStatus reservationStatus = reservationStatusService.getReservationStatusByStatusName(status);
+        reservation.setReservationStatus(reservationStatus);
+        reservationService.updateByReservationDto(reservation);
+        return "success";
+    }
+
+    @GetMapping("/damagebill/{id}")
+    public String createDamageBillPage(@PathVariable Long id, Model model) {
+        model.addAttribute("damagebill", new DamageBill());
+        model.addAttribute("reservationid", id);
+        return "damagebillpage";
+    }
+
+    @PostMapping("/createdamagebill")
+    public String saveDamageBill(DamageBill damageBill, Long reservationId) {
+        damageBillService.saveDamageBillByBillAndReservationId(damageBill, reservationId);
+        return "success";
+    }
 
 }
 

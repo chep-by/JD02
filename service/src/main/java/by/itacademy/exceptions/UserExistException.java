@@ -1,6 +1,6 @@
 package by.itacademy.exceptions;
 
-public class UserExistException extends Exception {
+public class UserExistException extends RuntimeException {
     public UserExistException() {
         super();
     }

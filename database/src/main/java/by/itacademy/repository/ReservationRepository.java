@@ -14,4 +14,8 @@ public interface ReservationRepository extends CrudRepository<Reservation, Long>
 
     @Query(value = "select r from Reservation r where r.isPayed=false")
     List<Reservation> findAllNotPayed();
+
+    @Query(value = "select r.dateTake, r.dateReturn from Reservation r where r.vehicle.id=?1")
+    List<Object[]> findBlockedDatesByVehicleId(Long id);
+
 }

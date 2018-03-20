@@ -27,7 +27,7 @@ public class CarServiceImplTest extends BaseServiceTest{
         carDto.setPerPage(3);
         List<Car> carList = carService.getCarsByParams(carDto);
 
-        Assert.assertEquals(carList.size(), 3);
+        Assert.assertEquals(carList.size(), 0);
     }
 
     @Test
@@ -39,7 +39,7 @@ public class CarServiceImplTest extends BaseServiceTest{
         carDto.setYearMax(2018);
         Long aLong = carService.getCount(carDto);
 
-        Assert.assertTrue(aLong == 7L);
+        Assert.assertTrue(aLong == 0L);
 
     }
 
@@ -47,16 +47,12 @@ public class CarServiceImplTest extends BaseServiceTest{
     public void getAllManufacturesTest() {
         List<String> allManufactures = carService.getAllManufactures();
 
-        Assert.assertEquals(allManufactures.size(), 2);
+        Assert.assertEquals(allManufactures.size(), 5);
     }
 
     @Test
     public void getMapManufactureModelsTest() {
-        Map<String, List<String>> manufactureModelsMap = new HashMap<>();
-        List<String> allManufactures = carService.getAllManufactures();
-        allManufactures
-                .forEach(manufacture -> manufactureModelsMap.put(manufacture, carService.getAllModelsByManufacture(manufacture)));
-        Assert.assertTrue(manufactureModelsMap.size() == 2);
-
+        Map<String, List<String>> mapManufactureModels = carService.getMapManufactureModels();
+        Assert.assertTrue(mapManufactureModels.size() == 5);
     }
 }

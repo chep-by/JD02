@@ -14,10 +14,10 @@ public class CarTest extends BaseEntityTest {
     @Test
     public void saveTest() {
 
-        Car carFind = carRepository.findOne(5L);
+        Car carFind = carRepository.findOne(1L);
 
-        Assert.assertEquals(carFind.getVehicleCategory().getCategoryName(), "budgetary");
-        Assert.assertEquals(carFind.getManufacture(), "AUDI");
+        Assert.assertEquals(carFind.getVehicleCategory().getCategoryName(), "luxury");
+        Assert.assertEquals(carFind.getManufacture(), "BMW");
     }
 
 }

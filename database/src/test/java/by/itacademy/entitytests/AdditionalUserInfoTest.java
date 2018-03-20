@@ -17,8 +17,8 @@ public class AdditionalUserInfoTest extends BaseEntityTest {
         AdditionalUsersInfo additionalUsersInfo1 = additionalUserInfoRepository.findOne(1L);
 
         Assert.assertEquals(additionalUsersInfo1.getUser().getLogin(), "alex");
-        Assert.assertEquals(additionalUsersInfo1.getDrivingLicenceInfo(), "asdasdasdasas");
-        Assert.assertEquals(additionalUsersInfo1.getPassportInfo(), "45654646");
+        Assert.assertEquals(additionalUsersInfo1.getDrivingLicenceInfo(), "licence_alex");
+        Assert.assertEquals(additionalUsersInfo1.getPassportInfo(), "passport_alex");
 
     }
 

@@ -1,5 +1,6 @@
 package by.itacademy.service;
 
+import by.itacademy.aspect.SaveOrUpdateLogger;
 import by.itacademy.entity.Role;
 import by.itacademy.entity.User;
 import by.itacademy.exceptions.UserExistException;
@@ -51,6 +52,7 @@ public class UserServiceImpl implements UserService {
                 .collect(Collectors.toList());
     }
 
+    @SaveOrUpdateLogger
     @Override
     public void newUserRegistration(User user) throws UserExistException {
         if (loginExist(user.getLogin())) {
@@ -58,11 +60,16 @@ public class UserServiceImpl implements UserService {
                     "There is an account with that login");
         }
         HashSet<Role> roles = new HashSet<>();
-        roles.add(roleRepository.findByRole("admin"));
+        roles.add(roleRepository.findByRole("user"));
         user.setRoles(roles);
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
+    }
+
+    @Override
+    public User findOneByLogin(String login) {
+        return userRepository.findByLogin(login);
     }
 
     private boolean loginExist(String login) {

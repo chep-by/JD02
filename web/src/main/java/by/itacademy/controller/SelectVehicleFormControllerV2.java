@@ -1,16 +1,16 @@
 package by.itacademy.controller;
 
-import by.itacademy.dto.CarDto;
-import by.itacademy.entity.Car;
-import by.itacademy.service.CarService;
+import by.itacademy.dto.VehicleDto;
+import by.itacademy.entity.Vehicle;
 import by.itacademy.service.VehicleCategoryService;
+import by.itacademy.service.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
@@ -18,18 +18,18 @@ import java.util.Map;
 @Controller
 public class SelectVehicleFormControllerV2 {
 
-    private CarService carService;
+    private VehicleService vehicleService;
     private VehicleCategoryService vehicleCategoryService;
 
     @Autowired
-    public SelectVehicleFormControllerV2(CarService carService, VehicleCategoryService vehicleCategoryService) {
-        this.carService = carService;
+    public SelectVehicleFormControllerV2(VehicleService vehicleService, VehicleCategoryService vehicleCategoryService) {
+        this.vehicleService = vehicleService;
         this.vehicleCategoryService = vehicleCategoryService;
     }
 
-    @ModelAttribute("carDto")
-    public CarDto carDtoModel() {
-        return new CarDto();
+    @ModelAttribute("vehicleDto")
+    public VehicleDto vehicleDtoModel() {
+        return new VehicleDto();
     }
 
     @ModelAttribute("allVehicleCategories")
@@ -39,27 +39,19 @@ public class SelectVehicleFormControllerV2 {
 
     @ModelAttribute("allManufactureModelsMap")
     public Map<String, List<String>> allManufactureModelsMap() {
-        return carService.getMapManufactureModels();
+        return vehicleService.getMapManufactureModels();
     }
 
-    @GetMapping("/selectcarsv2")
-    public String viewForm() {
-        return "select_cars_v2";
-    }
-
-    @GetMapping("/getcarlist")
-    @ResponseBody
-    public List<Car> getCarList(CarDto carDto) {
-        System.out.println(carDto);
-        List<Car> carsByParams = carService.getCarsByParams(carDto);
-        return carsByParams;
-    }
-
-    @GetMapping("/getcountpages")
-    @ResponseBody
-    public int getCountPages(@RequestBody CarDto carDto) {
-        int countPages = carService.getCountOfPages(carDto);
-        return countPages;
+    @GetMapping("/select_vehicles")
+    public String viewForm(VehicleDto vehicleDto, Model model, HttpServletRequest request) {
+        if (request.getQueryString() != null) {
+            int countPages = vehicleService.getCountOfPages(vehicleDto);
+            List<Vehicle> vehiclesByParams = vehicleService.getVehiclesByParams(vehicleDto);
+            model.addAttribute("vehicleList", vehiclesByParams);
+            model.addAttribute("countPages", countPages);
+        }
+//        return "view_cars";
+        return "select_vehicles";
     }
 
 //    @PostMapping("/select_cars")

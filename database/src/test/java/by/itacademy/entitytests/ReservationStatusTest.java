@@ -15,7 +15,7 @@ public class ReservationStatusTest extends BaseEntityTest {
     public void saveReservationStatusTest() {
 
         ReservationStatus reservationStatus1 = reservationStatusRepository.findOne(1L);
-        Assert.assertEquals(reservationStatus1.getStatusName(), "in rent");
+        Assert.assertEquals(reservationStatus1.getStatusName(), "order created");
 
     }
 

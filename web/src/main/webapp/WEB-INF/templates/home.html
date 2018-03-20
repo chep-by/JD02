@@ -3,7 +3,7 @@
 <head>
     <th:block th:replace="components/default_full :: head"></th:block>
 
-    <title>Sticky Footer Navbar Template for Bootstrap</title>
+    <title th:text="#{name.nav}"></title>
 
 </head>
 <body>
@@ -32,7 +32,7 @@
         </th:block>
     </div>
     <div>
-        <a th:href="@{/select_cars}" class="btn btn-info btn-lg btn-block" role="button" th:text="#{more_cars}">Больше авто!</a>
+        <a th:href="@{/select_vehicles}" class="btn btn-info btn-lg btn-block" role="button" th:text="#{more_cars}">Больше авто!</a>
     </div>
 </div>
 

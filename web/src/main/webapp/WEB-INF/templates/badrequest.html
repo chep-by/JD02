@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html th:with="lang=${#locale.language}" th:lang="${lang}" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:replace="components/default_full :: head"></th:block>
+
+    <title>Sticky Footer Navbar Template for Bootstrap</title>
+
+</head>
+<body>
+<div th:replace="components/default_full :: nav"></div>
+
+<div class="container" style="height: 80vh; vertical-align: middle; text-align: center">
+    <H1>ЧТО-ТО ПОШЛО НЕ ТАК</H1>
+    <h2>В БЛИЖАЙШЕЕ ВРЕМЯ МЫ ПОСТАРАЕМСЯ ЭТО ИСПРАВИТЬ</h2>
+    <!--Input your's code here-->
+</div>
+
+<div th:replace="components/default_full :: footer"></div>
+<div th:replace="components/default_full :: scripts"></div>
+</body>
+</html>

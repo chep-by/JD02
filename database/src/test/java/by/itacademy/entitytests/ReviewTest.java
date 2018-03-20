@@ -16,7 +16,7 @@ public class ReviewTest extends BaseEntityTest {
 
         Review reviewFind = reviewRepository.findOne(1L);
 
-        Assert.assertEquals(reviewFind.getUser().getLogin(), "max");
+        Assert.assertEquals(reviewFind.getUser().getLogin(), "alex");
     }
 
 }

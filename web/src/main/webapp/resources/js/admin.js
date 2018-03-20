@@ -30,7 +30,7 @@ function addFieldForPhoto() {
     var inputRadioMain = document.createElement("input");
     inputRadioMain.type = "radio";
     inputRadioMain.name = "main";
-    inputRadioMain.value = parseInt($('#photo_div div input').last().val())+1;
+    inputRadioMain.value = parseInt($('/*#photo_div*/ .classjs div input').last().val())+1;
     var div = document.createElement("div");
     div.className = "col-xs-2 text-center";
     $('.classjs').append(div);
@@ -40,6 +40,46 @@ function addFieldForPhoto() {
 
 function removeFieldForPhoto() {
     $('.classjs div').last().remove();
+}
+
+function addFieldForPhotoAddCarPage() {
+    var inputPhoto = document.createElement("input");
+    inputPhoto.className = "form-control";
+    inputPhoto.type = "url";
+    inputPhoto.name = "photoUrl";
+    var inputRadioMain = document.createElement("input");
+    inputRadioMain.type = "radio";
+    inputRadioMain.name = "main";
+    inputRadioMain.value = parseInt($('/*#photo_div*/ #photo_divCar div input').last().val())+1;
+    var div = document.createElement("div");
+    div.className = "col-xs-2 text-center";
+    $('#photo_divCar').append(div);
+    div.appendChild(inputPhoto);
+    div.appendChild(inputRadioMain);
+}
+
+function removeFieldForPhotoAddCarPage() {
+    $('#photo_divCar div').last().remove();
+}
+
+function addFieldForPhotoAddMotoPage() {
+    var inputPhoto = document.createElement("input");
+    inputPhoto.className = "form-control";
+    inputPhoto.type = "url";
+    inputPhoto.name = "photoUrl";
+    var inputRadioMain = document.createElement("input");
+    inputRadioMain.type = "radio";
+    inputRadioMain.name = "main";
+    inputRadioMain.value = parseInt($('/*#photo_div*/ #photo_divMoto div input').last().val())+1;
+    var div = document.createElement("div");
+    div.className = "col-xs-2 text-center";
+    $('#photo_divMoto').append(div);
+    div.appendChild(inputPhoto);
+    div.appendChild(inputRadioMain);
+}
+
+function removeFieldForPhotoAddMotoPage() {
+    $('#photo_divMoto div').last().remove();
 }
 
 // function addFields() {

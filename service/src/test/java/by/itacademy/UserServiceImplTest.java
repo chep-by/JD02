@@ -2,6 +2,7 @@ package by.itacademy;
 
 
 import by.itacademy.entity.Role;
+import by.itacademy.entity.User;
 import by.itacademy.service.UserService;
 import org.junit.Assert;
 import org.junit.Test;
@@ -20,7 +21,7 @@ public class UserServiceImplTest extends BaseServiceTest {
     @Test
     public void loadUserByUsernameSuccessfulTest() {
         UserDetails max = userService.loadUserByUsername("max");
-        Assert.assertEquals(max.getPassword(), "adr3232");
+        Assert.assertTrue(max.getPassword() != null);
     }
 
     @Test
@@ -33,10 +34,13 @@ public class UserServiceImplTest extends BaseServiceTest {
         }
     }
 
+
     @Test
-    public void Test() {
-        Set<String> collect = Stream.of("f", "b", "s").collect(Collectors.toSet());
-        System.out.println(collect.getClass());
+    public void newUserRegistrationTest() {
+        User user = new User();
+        user.setLogin("lol");
+        user.setPassword("kek");
+        userService.newUserRegistration(user);
 
     }
 }
