@@ -1,7 +1,6 @@
 package by.itacademy.service;
 
 import by.itacademy.dto.CarDto;
-import by.itacademy.entity.Car;
 import by.itacademy.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;

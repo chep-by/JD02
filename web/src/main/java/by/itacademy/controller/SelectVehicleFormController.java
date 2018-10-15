@@ -1,7 +1,6 @@
 package by.itacademy.controller;
 
 import by.itacademy.dto.CarDto;
-import by.itacademy.entity.Car;
 import by.itacademy.service.CarService;
 import by.itacademy.service.VehicleCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;

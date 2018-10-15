@@ -1,6 +1,5 @@
 package by.itacademy;
 
-import by.itacademy.entity.ReservationStatus;
 import by.itacademy.service.ReservationStatusService;
 import org.junit.Assert;
 import org.junit.Test;

@@ -1,8 +1,6 @@
 package by.itacademy.service;
 
 import by.itacademy.aspect.SaveOrUpdateLogger;
-import by.itacademy.entity.DamageBill;
-import by.itacademy.entity.Reservation;
 import by.itacademy.repository.DamageBillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

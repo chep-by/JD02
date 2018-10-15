@@ -1,13 +1,11 @@
 package by.itacademy;
 
 import by.itacademy.dto.CarDto;
-import by.itacademy.entity.Car;
 import by.itacademy.service.CarService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 

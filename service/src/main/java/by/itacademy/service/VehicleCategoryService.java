@@ -1,8 +1,6 @@
 package by.itacademy.service;
 
 
-import by.itacademy.entity.VehicleCategory;
-
 import java.util.List;
 
 public interface VehicleCategoryService {

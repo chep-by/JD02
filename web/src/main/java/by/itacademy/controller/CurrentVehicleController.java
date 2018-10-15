@@ -1,10 +1,6 @@
 package by.itacademy.controller;
 
 import by.itacademy.dto.ReservationDto;
-import by.itacademy.entity.Car;
-import by.itacademy.entity.Motorcycle;
-import by.itacademy.entity.Photos;
-import by.itacademy.entity.Vehicle;
 import by.itacademy.exceptions.ResourceNotFoundException;
 import by.itacademy.service.CostStrategyService;
 import by.itacademy.service.ReservationService;

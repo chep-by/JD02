@@ -1,7 +1,6 @@
 package by.itacademy.repository;
 
 import by.itacademy.dto.VehicleDto;
-import by.itacademy.entity.Vehicle;
 
 import java.util.List;
 

@@ -1,6 +1,5 @@
 package by.itacademy.entitytests;
 
-import by.itacademy.entity.AdditionalUsersInfo;
 import by.itacademy.repository.AdditionalUserInfoRepository;
 import org.junit.Assert;
 import org.junit.Test;

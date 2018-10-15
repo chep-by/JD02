@@ -1,6 +1,5 @@
 package by.itacademy.entitytests;
 
-import by.itacademy.entity.Role;
 import by.itacademy.repository.RoleRepository;
 import org.junit.Assert;
 import org.junit.Test;

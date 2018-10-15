@@ -1,6 +1,5 @@
 package by.itacademy.entitytests;
 
-import by.itacademy.entity.CostStrategy;
 import by.itacademy.repository.CostStrategyRepository;
 import org.junit.Assert;
 import org.junit.Test;

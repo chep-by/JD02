@@ -1,7 +1,5 @@
 package by.itacademy.service;
 
-import by.itacademy.entity.ReservationStatus;
-
 import java.util.List;
 
 public interface ReservationStatusService {

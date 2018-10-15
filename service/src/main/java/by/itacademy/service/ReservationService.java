@@ -2,7 +2,6 @@ package by.itacademy.service;
 
 import by.itacademy.dto.DateIntervalDto;
 import by.itacademy.dto.ReservationDto;
-import by.itacademy.entity.Reservation;
 
 import java.util.List;
 

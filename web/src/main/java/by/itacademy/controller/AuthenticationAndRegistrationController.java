@@ -1,6 +1,5 @@
 package by.itacademy.controller;
 
-import by.itacademy.entity.User;
 import by.itacademy.exceptions.UserExistException;
 import by.itacademy.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

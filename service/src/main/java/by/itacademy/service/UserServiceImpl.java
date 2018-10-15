@@ -1,8 +1,6 @@
 package by.itacademy.service;
 
 import by.itacademy.aspect.SaveOrUpdateLogger;
-import by.itacademy.entity.Role;
-import by.itacademy.entity.User;
 import by.itacademy.exceptions.UserExistException;
 import by.itacademy.repository.RoleRepository;
 import by.itacademy.repository.UserRepository;

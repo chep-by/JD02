@@ -1,6 +1,5 @@
 package by.itacademy.repository;
 
-import by.itacademy.entity.ChatLine;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

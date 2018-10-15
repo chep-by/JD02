@@ -1,6 +1,5 @@
 package by.itacademy.entitytests;
 
-import by.itacademy.entity.Review;
 import by.itacademy.repository.ReviewRepository;
 import org.junit.Assert;
 import org.junit.Test;

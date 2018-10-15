@@ -1,6 +1,5 @@
 package by.itacademy.repositorytests;
 
-import by.itacademy.entity.Reservation;
 import by.itacademy.repository.ReservationRepository;
 import org.junit.Assert;
 import org.junit.Test;

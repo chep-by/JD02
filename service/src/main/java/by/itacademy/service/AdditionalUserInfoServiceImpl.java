@@ -1,8 +1,6 @@
 package by.itacademy.service;
 
 import by.itacademy.aspect.SaveOrUpdateLogger;
-import by.itacademy.entity.AdditionalUsersInfo;
-import by.itacademy.entity.User;
 import by.itacademy.repository.AdditionalUserInfoRepository;
 import by.itacademy.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

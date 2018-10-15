@@ -1,6 +1,5 @@
 package by.itacademy.repository;
 
-import by.itacademy.entity.Reservation;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 

@@ -1,7 +1,6 @@
 package by.itacademy.repositorytests;
 
 import by.itacademy.dto.CarDto;
-import by.itacademy.entity.Car;
 import by.itacademy.repository.CarRepository;
 import org.junit.Assert;
 import org.junit.Test;

@@ -1,6 +1,5 @@
 package by.itacademy.entitytests;
 
-import by.itacademy.entity.Motorcycle;
 import by.itacademy.enums.MotorcycleType;
 import by.itacademy.repository.MotorcycleRepository;
 import org.junit.Assert;

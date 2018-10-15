@@ -1,7 +1,5 @@
 package by.itacademy.service;
 
-import by.itacademy.entity.AdditionalUsersInfo;
-
 public interface AdditionalUserInfoService {
     String[] getDrivingLicenceAndPassportInfoByUsername(String username);
 

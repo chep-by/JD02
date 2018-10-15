@@ -1,6 +1,5 @@
 package by.itacademy;
 
-import by.itacademy.entity.Bill;
 import by.itacademy.service.BillService;
 import org.junit.Assert;
 import org.junit.Test;

@@ -1,7 +1,5 @@
 package by.itacademy.controller;
 
-import by.itacademy.entity.AdditionalUsersInfo;
-import by.itacademy.entity.Reservation;
 import by.itacademy.exceptions.ResourceNotFoundException;
 import by.itacademy.service.AdditionalUserInfoService;
 import by.itacademy.service.ReservationService;

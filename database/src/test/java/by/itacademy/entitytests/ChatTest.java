@@ -1,6 +1,5 @@
 package by.itacademy.entitytests;
 
-import by.itacademy.entity.Chat;
 import by.itacademy.repository.ChatLineRepository;
 import by.itacademy.repository.ChatRepository;
 import org.junit.Assert;

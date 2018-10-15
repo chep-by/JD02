@@ -2,9 +2,6 @@ package by.itacademy.service;
 
 import by.itacademy.aspect.SaveOrUpdateLogger;
 import by.itacademy.dto.VehicleDto;
-import by.itacademy.entity.Photos;
-import by.itacademy.entity.Vehicle;
-import by.itacademy.entity.VehicleCategory;
 import by.itacademy.repository.PhotosRepository;
 import by.itacademy.repository.VehicleRepository;
 import org.springframework.beans.factory.annotation.Autowired;

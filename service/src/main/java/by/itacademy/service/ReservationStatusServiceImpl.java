@@ -1,6 +1,5 @@
 package by.itacademy.service;
 
-import by.itacademy.entity.ReservationStatus;
 import by.itacademy.repository.ReservationStatusRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

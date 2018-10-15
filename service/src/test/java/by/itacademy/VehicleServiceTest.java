@@ -1,6 +1,5 @@
 package by.itacademy;
 
-import by.itacademy.entity.Vehicle;
 import by.itacademy.service.VehicleService;
 import org.junit.Assert;
 import org.junit.Test;

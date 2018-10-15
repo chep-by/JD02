@@ -1,12 +1,6 @@
 package by.itacademy.controller;
 
 
-import by.itacademy.entity.Car;
-import by.itacademy.entity.DamageBill;
-import by.itacademy.entity.Motorcycle;
-import by.itacademy.entity.Reservation;
-import by.itacademy.entity.ReservationStatus;
-import by.itacademy.entity.Vehicle;
 import by.itacademy.enums.FuelType;
 import by.itacademy.enums.Gearbox;
 import by.itacademy.enums.MotorcycleType;

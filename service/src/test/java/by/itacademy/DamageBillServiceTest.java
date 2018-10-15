@@ -1,6 +1,5 @@
 package by.itacademy;
 
-import by.itacademy.entity.DamageBill;
 import by.itacademy.service.DamageBillService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,5 @@
 package by.itacademy.repositorytests;
 
-import by.itacademy.entity.Bill;
 import by.itacademy.repository.BillRepository;
 import org.junit.Assert;
 import org.junit.Test;
