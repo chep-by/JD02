@@ -1,3 +1,0 @@
-$(function () {
-    $("#model").chained("#manufacture");
-})
